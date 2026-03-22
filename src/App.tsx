@@ -173,35 +173,58 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#0a0806] z-[1000] flex flex-col md:hidden"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-[#0a0806] z-[1000] flex flex-col md:hidden w-full h-full"
             >
               {/* Header inside menu */}
-              <div className="flex justify-between items-center px-6 py-6 border-b border-gold/10">
+              <div className="flex justify-between items-center px-6 py-6 border-b border-gold/10 w-full shrink-0">
                 <div className="flex items-center gap-3.5">
                   <img src={logo} alt="Logo" className="w-8 h-8 object-contain" />
                   <span className="font-bebas text-2xl tracking-[0.3em] text-gold">PROSIFY</span>
                 </div>
-                {/* The toggle button is outside but visible due to z-index */}
+                {/* Close button is handled by the toggle button outside due to z-index */}
+                <div className="w-8 h-8" /> {/* Spacer for symmetry if needed, but toggle is at z-1001 */}
               </div>
 
-              {/* Scrollable Links Area */}
-              <div className="flex-1 overflow-y-auto py-12 px-8 flex flex-col gap-8">
-                {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item, idx) => (
-                  <motion.a 
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + idx * 0.05 }}
-                    href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
-                    className="text-4xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item}
-                  </motion.a>
-                ))}
+              {/* Links Area */}
+              <div className="flex-1 overflow-y-auto px-8 py-10 flex flex-col items-start gap-10">
+                <a 
+                  href="#philosophy" 
+                  className="text-4xl font-serif italic tracking-tight text-parchment w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </a>
+                <a 
+                  href="#services" 
+                  className="text-4xl font-serif italic tracking-tight text-parchment w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Services
+                </a>
+                <a 
+                  href="#process" 
+                  className="text-4xl font-serif italic tracking-tight text-parchment w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Process
+                </a>
+                <a 
+                  href="#testimonials" 
+                  className="text-4xl font-serif italic tracking-tight text-parchment w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Testimonials
+                </a>
+                <a 
+                  href="#cta" 
+                  className="text-4xl font-serif italic tracking-tight text-parchment w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact
+                </a>
                 
-                <div className="mt-12 pt-12 border-t border-gold/10">
+                <div className="mt-10 pt-10 border-t border-gold/10 w-full">
                   <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-6">Connect With Us</p>
                   <div className="flex flex-col gap-4">
                     <a href="mailto:hello@contactprosify.com" className="text-lg text-parchment/80">hello@contactprosify.com</a>
