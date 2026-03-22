@@ -145,22 +145,22 @@ export default function App() {
       />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-6 md:px-12 py-6 bg-ink/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
-        <a href="#hero" className="flex items-center gap-3.5 group transition-all duration-300" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
-          <div className="relative w-10 h-10 flex items-center justify-center">
+      <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-5 md:px-12 py-4 md:py-6 bg-ink/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-gold/5 md:border-none">
+        <a href="#hero" className="flex items-center gap-2.5 sm:gap-3.5 group transition-all duration-300" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
             <div className="absolute inset-0 bg-gold/5 rounded-full blur-md group-hover:bg-gold/15 transition-all" />
-            <img src={logo} alt="Prosify Logo" className="relative w-8 h-8 object-contain" />
+            <img src={logo} alt="Prosify Logo" className="relative w-6 h-6 sm:w-8 sm:h-8 object-contain" />
           </div>
-          <span className="font-bebas text-2xl tracking-[0.3em] text-gold group-hover:text-gold-light transition-colors">PROSIFY</span>
+          <span className="font-bebas text-xl sm:text-2xl tracking-[0.2em] sm:tracking-[0.3em] text-gold group-hover:text-gold-light transition-colors">PROSIFY</span>
         </a>
         
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-gold p-2 relative z-[1001]"
+          className="md:hidden text-gold p-2 relative z-[1001] active:scale-90 transition-transform"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Desktop Menu */}
@@ -180,70 +180,83 @@ export default function App() {
         </ul>
 
         {/* Mobile Menu Overlay */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isMobileMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-[#0a0806] z-[1000] md:hidden overflow-y-auto"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 bg-ink z-[1000] md:hidden flex flex-col"
             >
-              <div className="flex flex-col min-h-screen p-8 pt-28">
-                {/* Branding inside menu */}
-                <div className="absolute top-8 left-8 flex items-center gap-3">
-                  <img src={logo} alt="Logo" className="w-8 h-8 object-contain" />
-                  <span className="font-bebas text-2xl tracking-[0.3em] text-gold">PROSIFY</span>
-                </div>
+              {/* Background Decorative Elements */}
+              <div className="absolute inset-0 opacity-20 pointer-events-none">
+                <div className="absolute top-[-10%] right-[-10%] w-[60%] aspect-square rounded-full bg-gold/10 blur-[100px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[60%] aspect-square rounded-full bg-gold/5 blur-[100px]" />
+              </div>
 
+              <div className="relative flex flex-col h-full p-8 pt-24 overflow-y-auto">
                 {/* Navigation Links */}
-                <div className="flex flex-col gap-10">
-                  <a 
-                    href="#philosophy" 
-                    className="text-5xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    About
-                  </a>
-                  <a 
-                    href="#services" 
-                    className="text-5xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Services
-                  </a>
-                  <a 
-                    href="#process" 
-                    className="text-5xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Process
-                  </a>
-                  <a 
-                    href="#testimonials" 
-                    className="text-5xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Testimonials
-                  </a>
-                  <a 
-                    href="#cta" 
-                    className="text-5xl font-serif italic tracking-tight text-parchment active:text-gold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Contact
-                  </a>
-                </div>
+                <motion.div 
+                  className="flex flex-col gap-6"
+                  initial="closed"
+                  animate="open"
+                  variants={{
+                    open: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+                    closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+                  }}
+                >
+                  {[
+                    { label: 'About', href: '#philosophy' },
+                    { label: 'Services', href: '#services' },
+                    { label: 'Process', href: '#process' },
+                    { label: 'Testimonials', href: '#testimonials' },
+                    { label: 'Contact', href: '#cta' }
+                  ].map((link) => (
+                    <motion.div
+                      key={link.label}
+                      variants={{
+                        open: { opacity: 1, x: 0 },
+                        closed: { opacity: 0, x: 20 }
+                      }}
+                    >
+                      <a 
+                        href={link.href} 
+                        className="group flex items-center gap-4"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span className="font-serif text-5xl sm:text-6xl italic tracking-tight text-parchment group-active:text-gold transition-colors">
+                          {link.label}
+                        </span>
+                        <ArrowRight className="text-gold opacity-0 -translate-x-4 group-active:opacity-100 group-active:translate-x-0 transition-all" size={24} />
+                      </a>
+                    </motion.div>
+                  ))}
+                </motion.div>
                 
                 {/* Footer inside menu */}
-                <div className="mt-auto pt-16 pb-8">
-                  <div className="w-full h-[1px] bg-gold/10 mb-10" />
-                  <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-6">Get In Touch</p>
-                  <div className="flex flex-col gap-4">
-                    <a href="mailto:hello@contactprosify.com" className="text-lg text-parchment/80">hello@contactprosify.com</a>
-                    <p className="text-sm text-warm-grey">Premium Content Agency<br />India & Beyond</p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="mt-auto pt-12 pb-4"
+                >
+                  <div className="w-12 h-[1px] bg-gold mb-8" />
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
+                      <a href="mailto:contactprosify@gmail.com" className="text-lg text-parchment hover:text-gold transition-colors">contactprosify@gmail.com</a>
+                    </div>
+                    <div>
+                      <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Follow Us</p>
+                      <div className="flex gap-6">
+                        {['LinkedIn', 'Instagram', 'Twitter'].map(social => (
+                          <span key={social} className="text-[11px] tracking-widest uppercase text-parchment/40">{social}</span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
