@@ -34,13 +34,13 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8 md:px-12">
         {/* Header */}
-        <header className="pt-10 pb-6 border-b border-[#e0d9d0]">
-          <h1 className="font-serif text-3xl sm:text-4xl font-light mb-2 text-[#0d0d0d]">Privacy Policy</h1>
+        <header className="pt-8 pb-4 border-b border-[#e0d9d0]">
+          <h1 className="font-serif text-2xl sm:text-3xl font-light mb-1 text-[#0d0d0d]">Privacy Policy</h1>
           <p className="text-[#6b6560] text-xs sm:text-sm">Effective Date: 22 March 2026</p>
         </header>
 
         {/* Intro */}
-        <div className="py-6 border-b border-[#e0d9d0] space-y-3 text-[#2a2620] leading-relaxed text-[14px] sm:text-[15px]">
+        <div className="py-4 border-b border-[#e0d9d0] space-y-2 text-[#2a2620] leading-relaxed text-[13px] sm:text-[14px]">
           <p>
             Prosify is a premium virtual content and communication agency based in India, serving a global clientele. This policy explains what information we collect, why we collect it, and how we protect it.
           </p>
@@ -50,9 +50,9 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
         </div>
 
         {/* TOC */}
-        <div className="py-6 border-b border-[#e0d9d0]">
-          <h2 className="font-serif text-xl font-normal mb-3">Table of Contents</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-1.5">
+        <div className="py-4 border-b border-[#e0d9d0]">
+          <h2 className="font-serif text-xl font-normal mb-2">Table of Contents</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-1">
             {[
               "Who We Are", "Scope & Application", "Information We Collect", "How We Use Your Information",
               "Legal Basis for Processing", "Sharing & Disclosure", "International Data Transfers",
@@ -74,7 +74,7 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
           <Section id="s1" num="01" title="Who We Are">
             <p>Prosify is a fully virtual premium content and communication agency. We provide content strategy, professional writing, ghostwriting, resume development, editing and proofreading, blogging, thought leadership, and premium website development services to brands and professionals worldwide.</p>
             <p>For the purposes of data protection law, Prosify acts as the <strong>data controller</strong> in respect of any personal data you share with us, meaning we determine the purposes and means of processing. Where we engage trusted collaborators to assist in delivering your project, those individuals act as <strong>data processors</strong>, operating strictly under our instruction and bound by confidentiality obligations.</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem label="Business Name">Prosify</ListItem>
               <ListItem label="Nature">Virtual Agency, India-based, globally operating</ListItem>
               <ListItem label="Primary Contact">contactprosify@gmail.com</ListItem>
@@ -83,14 +83,14 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
           <Section id="s2" num="02" title="Scope & Application">
             <p>This Privacy Policy applies to:</p>
-            <ul className="space-y-3 my-6">
+            <ul className="space-y-1 my-3">
               <ListItem>All individuals who visit the Prosify website, regardless of their country of residence.</ListItem>
               <ListItem>All prospective clients who contact us via email to enquire about our services.</ListItem>
               <ListItem>All current and past clients who have engaged Prosify for any service.</ListItem>
               <ListItem>All individuals whose personal data is processed by Prosify in the course of delivering our services, for example, biographical or career information shared for resume, ghostwriting, or thought leadership projects.</ListItem>
             </ul>
             <p>This policy does not apply to third-party websites, social media platforms, or payment processors that may be linked from or used alongside our services. Those platforms operate under their own independent privacy policies.</p>
-            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-6 mt-8 text-[15px]">
+            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-4 mt-4 text-[13px]">
               Wherever you are in the world, if you interact with Prosify, this policy applies to you. We extend the same standard of care to every individual regardless of nationality or location.
             </div>
           </Section>
@@ -98,8 +98,8 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
           <Section id="s3" num="03" title="Information We Collect">
             <p>We collect only what is strictly necessary to provide our services and communicate with you effectively. All information we receive comes directly from you, we use no automated collection systems, cookies, or trackers of any kind, and we do not purchase data from any third-party source.</p>
             
-            <h4 className="font-serif text-xl font-medium mt-10 mb-4">Information you provide via email</h4>
-            <ul className="space-y-3 mb-8">
+            <h4 className="font-serif text-lg font-medium mt-6 mb-2">Information you provide via email</h4>
+            <ul className="space-y-1 mb-4">
               <ListItem>Your name and email address, shared when you first write to us.</ListItem>
               <ListItem>Your professional background, career history, qualifications, and achievements, shared when engaging resume, LinkedIn, or career narrative services.</ListItem>
               <ListItem>Your business details: brand name, industry, target audience, competitors, content objectives, and tone preferences, shared when onboarding for content strategy, writing, or website development.</ListItem>
@@ -107,14 +107,14 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
               <ListItem>Any other information you voluntarily include in your email correspondence with us.</ListItem>
             </ul>
 
-            <h4 className="font-serif text-xl font-medium mt-10 mb-4">Information collected at the point of payment</h4>
-            <ul className="space-y-3 mb-8">
+            <h4 className="font-serif text-lg font-medium mt-6 mb-2">Information collected at the point of payment</h4>
+            <ul className="space-y-1 mb-4">
               <ListItem>Your billing name and email address, used to issue and track invoices.</ListItem>
               <ListItem>Payment is processed exclusively through secure third-party payment platforms. Prosify does not receive, store, or have access to your payment card numbers, bank account details, or any other financial credentials.</ListItem>
             </ul>
 
-            <h4 className="font-serif text-xl font-medium mt-10 mb-4">Information we do NOT collect</h4>
-            <ul className="space-y-3">
+            <h4 className="font-serif text-lg font-medium mt-6 mb-2">Information we do NOT collect</h4>
+            <ul className="space-y-1">
               <ListItem>We do not collect data through cookies, tracking pixels, web beacons, analytics scripts, or any similar technologies.</ListItem>
               <ListItem>We do not collect sensitive personal data such as government-issued ID numbers, health records, religious beliefs, or biometric data.</ListItem>
               <ListItem>We do not collect data from third-party data brokers, social media APIs, or any other external data sources.</ListItem>
@@ -123,7 +123,7 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
           <Section id="s4" num="04" title="How We Use Your Information">
             <p>We use the personal information you share with us for the following clearly defined and limited purposes only:</p>
-            <ul className="space-y-3 my-6">
+            <ul className="space-y-1 my-3">
               <ListItem><strong>Service delivery:</strong> To draft, edit, strategise, and deliver the specific content or development service you have engaged us for.</ListItem>
               <ListItem><strong>Project communication:</strong> To correspond with you via email regarding your project.</ListItem>
               <ListItem><strong>Invoicing and payment:</strong> To issue invoices, track payment, and maintain accurate financial records.</ListItem>
@@ -132,14 +132,14 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
               <ListItem><strong>Legal compliance:</strong> To meet obligations under applicable law in India and other jurisdictions.</ListItem>
               <ListItem><strong>Marketing communications:</strong> Occasionally, to inform you of new services, but only with express consent and a clear opt-out.</ListItem>
             </ul>
-            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-6 mt-8 text-[15px]">
+            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-4 mt-4 text-[13px]">
               We will never use documents, drafts, career materials, business strategies, or any other content you share for the purpose of a project to train AI models, build datasets, or create derivative works.
             </div>
           </Section>
 
           <Section id="s5" num="05" title="Legal Basis for Processing">
             <p>We process personal data only where we have a clear and lawful basis to do so:</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem><strong>Contractual necessity:</strong> Necessary to perform our agreement and deliver what we have committed to.</ListItem>
               <ListItem><strong>Legitimate interests:</strong> Maintaining records of correspondence and work, managing business operations.</ListItem>
               <ListItem><strong>Consent:</strong> For marketing communications, based on your freely given, specific, and informed consent.</ListItem>
@@ -149,7 +149,7 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
           <Section id="s6" num="06" title="Sharing & Disclosure">
             <p>Prosify does not sell, rent, trade, or share your personal information with any third party for commercial gain. The only limited circumstances under which we disclose your data are:</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem><strong>Trusted project collaborators:</strong> Selected freelancers bound by written confidentiality agreements.</ListItem>
               <ListItem><strong>Payment processors:</strong> Secure platforms like Razorpay, PayPal, Wise, or similar, solely to process transactions.</ListItem>
               <ListItem><strong>Legal and regulatory authorities:</strong> Where required by law or in response to a valid and lawful request.</ListItem>
@@ -159,18 +159,18 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
           <Section id="s7" num="07" title="International Data Transfers">
             <p>Prosify is headquartered in India. When you engage our services from another country, your personal data is transferred to and processed in India under the protections of the DPDPA 2023 and the IT Act 2000.</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem><strong>EU / UK transfers:</strong> We rely on Standard Contractual Clauses (SCCs) or equivalent mechanisms.</ListItem>
               <ListItem><strong>Global transfers:</strong> We work only with providers maintaining recognised international standards.</ListItem>
             </ul>
-            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-6 mt-8 text-[15px]">
+            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-4 mt-4 text-[13px]">
               Regardless of where your data is processed, we apply the same privacy standards and protections described in this policy, at all times, without exception.
             </div>
           </Section>
 
           <Section id="s8" num="08" title="Data Retention">
             <p>We retain personal information only for as long as is necessary:</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem><strong>Active client files:</strong> Duration of engagement plus three (3) years.</ListItem>
               <ListItem><strong>Email correspondence:</strong> Two (2) years from last communication.</ListItem>
               <ListItem><strong>Marketing consent records:</strong> Period of active consent plus one (1) year.</ListItem>
@@ -179,7 +179,7 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
           <Section id="s9" num="09" title="Security">
             <p>We implement appropriate technical and organisational measures:</p>
-            <ul className="space-y-3 mt-6">
+            <ul className="space-y-1 mt-3">
               <ListItem>Access-controlled, password-protected storage environments.</ListItem>
               <ListItem>Encrypted email protocols (TLS).</ListItem>
               <ListItem>PCI-DSS compliant third-party payment processing.</ListItem>
@@ -187,7 +187,7 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
           </Section>
 
           <Section id="s10" num="10" title="Cookies & Tracking">
-            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-6 mb-8 text-[15px]">
+            <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-4 mb-4 text-[13px]">
               Prosify does not use cookies, tracking pixels, web beacons, analytics platforms, or any similar tracking technologies on our website.
             </div>
             <p>Your visit to the Prosify website generates no data collection on our part. The only personal data we ever receive from you is what you choose to send us directly via email.</p>
@@ -276,17 +276,17 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
 function Section({ id, num, title, children }: { id: string, num: string, title: string, children: React.ReactNode }) {
   return (
-    <section id={id} className="py-6 border-b border-[#e0d9d0] scroll-mt-24 last:border-0 block w-full">
-      <div className="mb-3">
+    <div id={id} className="py-4 border-b border-[#e0d9d0] scroll-mt-24 last:border-0 block w-full min-h-0 h-auto relative">
+      <div className="mb-2">
         <h2 className="font-serif text-xl sm:text-2xl font-normal text-[#0d0d0d] flex items-baseline gap-3">
           <span className="text-[#b8903a] text-base sm:text-lg font-medium">{num}.</span>
           {title}
         </h2>
       </div>
-      <div className="space-y-3 text-[14px] sm:text-[15px] leading-[1.6] text-[#2a2620]">
+      <div className="space-y-2 text-[14px] sm:text-[15px] leading-[1.6] text-[#2a2620]">
         {children}
       </div>
-    </section>
+    </div>
   );
 }
 
