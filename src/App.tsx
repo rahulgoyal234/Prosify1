@@ -7,6 +7,7 @@ import {
   Menu
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
+import { Globe } from "./components/Globe";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -36,7 +37,7 @@ const testimonials = [
   { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
 ];
 
-const sectionIds = ['hero', 'philosophy', 'services', 'process', 'testimonials', 'cta'];
+const sectionIds = ['hero', 'philosophy', 'global', 'services', 'process', 'testimonials', 'cta'];
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
@@ -418,6 +419,34 @@ export default function App() {
                 <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Geographic Reach</div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Global Presence Section */}
+      <section id="global" className="bg-ink flex-col py-20">
+        <div className="max-w-[1200px] w-full px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1 flex justify-center">
+            <Globe />
+          </div>
+          <div className="order-1 md:order-2">
+            <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-5">Global Reach</motion.p>
+            <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(36px,4vw,58px)] font-light leading-[1.1] text-ivory mb-8">
+              Connecting <span className="italic text-gold">Stories</span><br />Across Borders
+            </motion.h2>
+            <motion.p {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="text-[15px] leading-[1.9] text-warm-grey mb-8">
+              Based in India, Prosify operates as a fully virtual agency, serving a diverse global clientele. From New York to Tokyo, we bridge the gap between ideas and impact, ensuring your voice resonates wherever your audience may be.
+            </motion.p>
+            <div className="grid grid-cols-2 gap-8">
+              <motion.div {...fadeIn} transition={{ delay: 0.3, duration: 0.8 }}>
+                <h4 className="font-serif text-xl text-gold mb-2">Virtual-First</h4>
+                <p className="text-[12px] text-warm-grey">Seamless collaboration regardless of time zones or geography.</p>
+              </motion.div>
+              <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }}>
+                <h4 className="font-serif text-xl text-gold mb-2">Global Standards</h4>
+                <p className="text-[12px] text-warm-grey">Premium quality content tailored for international markets.</p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
