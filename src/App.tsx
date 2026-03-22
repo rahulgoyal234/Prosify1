@@ -41,6 +41,7 @@ const sectionIds = ['hero', 'philosophy', 'services', 'process', 'testimonials',
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
   const [isTouchActive, setIsTouchActive] = useState(false);
+  const [hasMoved, setHasMoved] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -78,6 +79,7 @@ export default function App() {
   // Cursor logic
   useEffect(() => {
     const handleMove = (x: number, y: number) => {
+      if (!hasMoved) setHasMoved(true);
       mouseX.set(x);
       mouseY.set(y);
     };
@@ -149,7 +151,7 @@ export default function App() {
 
       {/* Custom Cursor */}
       <motion.div 
-        className="custom-cursor fixed top-0 left-0 border border-gold rounded-full pointer-events-none z-[9998] mix-blend-difference will-change-transform"
+        className="custom-cursor fixed top-0 left-0 border border-gold rounded-full pointer-events-none z-[9998] md:mix-blend-difference will-change-transform"
         style={{ 
           x: ringX, 
           y: ringY,
@@ -159,23 +161,22 @@ export default function App() {
         animate={{
           width: isHovering || isTouchActive ? 80 : 36,
           height: isHovering || isTouchActive ? 80 : 36,
-          opacity: isHovering || isTouchActive ? 0.4 : 0.6,
+          opacity: hasMoved ? (isHovering || isTouchActive ? 0.5 : 0.3) : 0,
           scale: isTouchActive ? 1.2 : 1,
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
       <motion.div 
-        className="custom-cursor fixed top-0 left-0 w-2.5 h-2.5 bg-gold rounded-full pointer-events-none z-[9999] mix-blend-difference will-change-transform"
+        className="custom-cursor fixed top-0 left-0 w-2.5 h-2.5 bg-gold rounded-full pointer-events-none z-[9999] md:mix-blend-difference will-change-transform"
         style={{ 
           x: dotX, 
           y: dotY,
           translateX: "-50%",
           translateY: "-50%",
-          opacity: isTouchActive ? 0.8 : 1,
-          scale: isTouchActive ? 1.5 : 1,
+          opacity: hasMoved ? (isTouchActive ? 0.8 : 1) : 0,
         }}
         animate={{
-          scale: isHovering ? 2.5 : 1,
+          scale: isHovering ? 2.5 : (isTouchActive ? 1.5 : 1),
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
       />

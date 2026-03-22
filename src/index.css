@@ -31,13 +31,10 @@
     @apply min-h-[100svh] md:h-[100svh] snap-start relative overflow-visible md:overflow-hidden flex items-center justify-center py-20 md:py-0;
   }
 
-  /* Hide custom cursor on touch devices */
+  /* Allow custom cursor on touch devices if handled by JS */
   @media (hover: none) and (pointer: coarse) {
     body {
       cursor: auto !important;
-    }
-    .custom-cursor {
-      display: none !important;
     }
   }
 }
