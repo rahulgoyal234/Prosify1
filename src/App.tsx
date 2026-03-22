@@ -143,12 +143,12 @@ export default function App() {
         
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-gold p-2"
+          className="md:hidden text-gold p-2 relative z-[110]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Desktop Menu */}
@@ -171,21 +171,41 @@ export default function App() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              className="fixed inset-0 bg-ink z-[90] flex flex-col items-center justify-center gap-8 md:hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 bg-ink z-[100] flex flex-col items-center justify-center gap-10 md:hidden overflow-hidden"
             >
-              {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
-                <a 
-                  key={item}
-                  href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
-                  className="text-2xl tracking-[0.3em] uppercase text-parchment hover:text-gold transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
+              <div className="absolute top-8 left-6">
+                <div className="flex items-center gap-3.5">
+                  <div className="relative w-10 h-10 flex items-center justify-center">
+                    <img src={logo} alt="Prosify Logo" className="relative w-8 h-8 object-contain" />
+                  </div>
+                  <span className="font-bebas text-2xl tracking-[0.3em] text-gold">PROSIFY</span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col items-center gap-8">
+                {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item, idx) => (
+                  <motion.a 
+                    key={item}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.05 }}
+                    href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                    className="text-3xl font-serif italic tracking-wider text-parchment hover:text-gold transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item}
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="absolute bottom-12 text-center">
+                <p className="text-[10px] tracking-[0.4em] uppercase text-gold/50 mb-4">Get in touch</p>
+                <a href="mailto:hello@contactprosify.com" className="text-sm tracking-widest text-parchment/70">hello@contactprosify.com</a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -221,7 +241,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="font-serif text-[clamp(48px,10vw,130px)] font-light leading-[0.9] tracking-tight text-ivory mb-7"
+            className="font-serif text-[clamp(42px,12vw,110px)] font-light leading-[0.95] tracking-tight text-ivory mb-7"
           >
             Transform<br />Ideas Into<br /><span className="italic text-gold">Narratives.</span>
           </motion.h1>
