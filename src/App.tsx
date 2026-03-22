@@ -156,11 +156,11 @@ export default function App() {
         
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-gold p-2 relative z-[1001] active:scale-90 transition-transform"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
+          className="md:hidden text-gold p-2 relative z-[101] active:scale-90 transition-transform"
+          onClick={() => setIsMobileMenuOpen(true)}
+          aria-label="Open Menu"
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          <Menu size={28} />
         </button>
 
         {/* Desktop Menu */}
@@ -179,89 +179,97 @@ export default function App() {
           ))}
         </ul>
 
-        {/* Mobile Menu Overlay */}
-        <AnimatePresence mode="wait">
-          {isMobileMenuOpen && (
-            <motion.div 
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-0 bg-ink z-[1000] md:hidden flex flex-col"
-            >
-              {/* Background Decorative Elements */}
-              <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-[-10%] right-[-10%] w-[60%] aspect-square rounded-full bg-gold/10 blur-[100px]" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[60%] aspect-square rounded-full bg-gold/5 blur-[100px]" />
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-[#0a0806] z-[2000] md:hidden flex flex-col"
+          >
+            {/* Background Decorative Elements */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none">
+              <div className="absolute top-[-10%] right-[-10%] w-[60%] aspect-square rounded-full bg-gold/10 blur-[100px]" />
+              <div className="absolute bottom-[-10%] left-[-10%] w-[60%] aspect-square rounded-full bg-gold/5 blur-[100px]" />
+            </div>
+
+            <div className="relative flex flex-col h-full p-6 sm:p-8 overflow-y-auto">
+              {/* Menu Header */}
+              <div className="flex justify-between items-center mb-12">
+                <div className="flex items-center gap-2.5">
+                  <img src={logo} alt="Logo" className="w-8 h-8 object-contain" />
+                  <span className="font-bebas text-2xl tracking-[0.3em] text-gold">PROSIFY</span>
+                </div>
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gold p-2 active:scale-90 transition-transform"
+                  aria-label="Close Menu"
+                >
+                  <X size={32} />
+                </button>
               </div>
 
-              <div className="relative flex flex-col h-full p-8 pt-24 overflow-y-auto">
-                {/* Navigation Links */}
-                <motion.div 
-                  className="flex flex-col gap-6"
-                  initial="closed"
-                  animate="open"
-                  variants={{
-                    open: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-                    closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
-                  }}
-                >
-                  {[
-                    { label: 'About', href: '#philosophy' },
-                    { label: 'Services', href: '#services' },
-                    { label: 'Process', href: '#process' },
-                    { label: 'Testimonials', href: '#testimonials' },
-                    { label: 'Contact', href: '#cta' }
-                  ].map((link) => (
-                    <motion.div
-                      key={link.label}
-                      variants={{
-                        open: { opacity: 1, x: 0 },
-                        closed: { opacity: 0, x: 20 }
-                      }}
+              {/* Navigation Links */}
+              <motion.div 
+                className="flex flex-col gap-6"
+                initial="closed"
+                animate="open"
+                variants={{
+                  open: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+                  closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+                }}
+              >
+                {[
+                  { label: 'About', href: '#philosophy' },
+                  { label: 'Services', href: '#services' },
+                  { label: 'Process', href: '#process' },
+                  { label: 'Testimonials', href: '#testimonials' },
+                  { label: 'Contact', href: '#cta' }
+                ].map((link) => (
+                  <motion.div
+                    key={link.label}
+                    variants={{
+                      open: { opacity: 1, x: 0 },
+                      closed: { opacity: 0, x: 20 }
+                    }}
+                  >
+                    <a 
+                      href={link.href} 
+                      className="group flex items-center gap-4"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <a 
-                        href={link.href} 
-                        className="group flex items-center gap-4"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <span className="font-serif text-5xl sm:text-6xl italic tracking-tight text-parchment group-active:text-gold transition-colors">
-                          {link.label}
-                        </span>
-                        <ArrowRight className="text-gold opacity-0 -translate-x-4 group-active:opacity-100 group-active:translate-x-0 transition-all" size={24} />
-                      </a>
-                    </motion.div>
-                  ))}
-                </motion.div>
-                
-                {/* Footer inside menu */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="mt-auto pt-12 pb-4"
-                >
-                  <div className="w-12 h-[1px] bg-gold mb-8" />
-                  <div className="space-y-6">
-                    <div>
-                      <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
-                      <a href="mailto:contactprosify@gmail.com" className="text-lg text-parchment hover:text-gold transition-colors">contactprosify@gmail.com</a>
-                    </div>
-                    <div>
-                      <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Follow Us</p>
-                      <div className="flex gap-6">
-                        {['LinkedIn', 'Instagram', 'Twitter'].map(social => (
-                          <span key={social} className="text-[11px] tracking-widest uppercase text-parchment/40">{social}</span>
-                        ))}
-                      </div>
-                    </div>
+                      <span className="font-serif text-5xl sm:text-6xl italic tracking-tight text-parchment group-active:text-gold transition-colors">
+                        {link.label}
+                      </span>
+                      <ArrowRight className="text-gold opacity-0 -translate-x-4 group-active:opacity-100 group-active:translate-x-0 transition-all" size={24} />
+                    </a>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
+              {/* Footer inside menu */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-auto pt-12 pb-4"
+              >
+                <div className="w-12 h-[1px] bg-gold mb-8" />
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
+                    <a href="mailto:contactprosify@gmail.com" className="text-lg text-parchment hover:text-gold transition-colors">contactprosify@gmail.com</a>
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Section Dots */}
       <div className="fixed right-7 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2.5 z-[100]">
