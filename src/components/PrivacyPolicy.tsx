@@ -32,107 +32,41 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
         </button>
       </nav>
 
-      <div className="max-w-[900px] mx-auto px-4 sm:px-8 md:px-12">
-        {/* Hero */}
-        <header className="pt-16 sm:pt-32 pb-16 sm:pb-24 border-b border-[#e0d9d0]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
-            <div className="max-w-2xl">
-              <h1 className="font-serif text-[clamp(3rem,12vw,7rem)] font-light leading-[0.95] tracking-tight mb-8">
-                Privacy<br />
-                <span className="italic text-[#b8903a] ml-[0.2em]">Standards</span>
-              </h1>
-              <p className="text-[18px] sm:text-[20px] leading-relaxed text-[#2a2620] font-light max-w-xl">
-                Our commitment to your data sovereignty, explained with clarity and transparency.
-              </p>
-            </div>
-            <div className="flex flex-col gap-6 border-l border-[#e0d9d0] pl-8 pb-2">
-              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
-                Version 2.0
-              </div>
-              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
-                Effective<span className="block text-[14px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">22 March 2026</span>
-              </div>
-              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
-                Jurisdiction<span className="block text-[14px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">Global / India</span>
-              </div>
-            </div>
-          </div>
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 md:px-12">
+        {/* Header */}
+        <header className="pt-10 pb-6 border-b border-[#e0d9d0]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-light mb-2 text-[#0d0d0d]">Privacy Policy</h1>
+          <p className="text-[#6b6560] text-xs sm:text-sm">Effective Date: 22 March 2026</p>
         </header>
 
-        {/* Quick Summary / TL;DR */}
-        <div className="py-16 sm:py-24 grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-[#e0d9d0]">
-          <div className="md:col-span-1">
-            <h2 className="font-serif text-2xl italic text-[#b8903a] mb-4">At a Glance</h2>
-            <p className="text-[13px] tracking-wider uppercase text-[#6b6560] leading-relaxed">
-              The core principles that guide our data handling.
-            </p>
-          </div>
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <SummaryItem title="No Data Sales" desc="We never sell, rent, or trade your personal information to third parties." />
-            <SummaryItem title="No Trackers" desc="Our website uses zero cookies, pixels, or automated tracking systems." />
-            <SummaryItem title="Purpose Only" desc="We only collect data necessary to deliver your specific project." />
-            <SummaryItem title="Global Rights" desc="We honour GDPR, DPDPA, and CCPA rights for all users worldwide." />
-          </div>
-        </div>
-
-        {/* Intro & Frameworks */}
-        <div className="py-16 sm:py-24 border-b border-[#e0d9d0]">
-          <div className="max-w-2xl space-y-8">
-            <p className="text-[17px] sm:text-[19px] leading-[1.8] text-[#2a2620]">
-              Prosify is a premium virtual content and communication agency based in India, serving a global clientele. Because we work across borders, this Privacy Policy has been written to meet or exceed the standards required by the major data protection frameworks worldwide.
-            </p>
-            <p className="text-[17px] sm:text-[19px] leading-[1.8] text-[#2a2620]">
-              This policy explains in plain language what information we collect, why we collect it, and how we protect it. If you have questions, write to us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/30 hover:border-[#b8903a]">contactprosify@gmail.com</a>.
-            </p>
-          </div>
-
-          <div className="mt-20 bg-[#f9f7f2] border border-[#e0d9d0] p-8 sm:p-12">
-            <div className="flex flex-col lg:flex-row gap-12">
-              <div className="lg:w-1/3">
-                <span className="text-[11px] tracking-[0.2em] uppercase text-[#b8903a] font-semibold block mb-4">Compliance</span>
-                <h3 className="font-serif text-3xl font-light leading-tight">Global Regulatory Alignment</h3>
-              </div>
-              <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-6">
-                {['GDPR (EU/UK)', 'DPDPA (India)', 'CCPA (USA)', 'PIPEDA (Canada)', 'Privacy Act (AU)', 'IT Act (India)'].map(tag => (
-                  <div key={tag} className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#b8903a]" />
-                    <span className="text-[12px] tracking-wide text-[#6b6560] uppercase">{tag}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Intro */}
+        <div className="py-6 border-b border-[#e0d9d0] space-y-3 text-[#2a2620] leading-relaxed text-[14px] sm:text-[15px]">
+          <p>
+            Prosify is a premium virtual content and communication agency based in India, serving a global clientele. This policy explains what information we collect, why we collect it, and how we protect it.
+          </p>
+          <p>
+            If you have questions, please contact us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] underline underline-offset-4">contactprosify@gmail.com</a>.
+          </p>
         </div>
 
         {/* TOC */}
-        <div className="py-20 sm:py-32 border-b border-[#e0d9d0]">
-          <div className="flex flex-col md:flex-row gap-16">
-            <div className="md:w-1/3">
-              <h2 className="font-serif text-4xl font-light sticky top-32">Index of<br /><span className="italic text-[#b8903a]">Provisions</span></h2>
-            </div>
-            <div className="md:w-2/3 grid grid-cols-1 gap-1">
-              {[
-                "Who We Are", "Scope & Application", "Information We Collect", "How We Use Your Information",
-                "Legal Basis for Processing", "Sharing & Disclosure", "International Data Transfers",
-                "Data Retention", "Security", "Cookies & Tracking", "Your Rights by Region",
-                "Third-Party Links", "Children's Privacy", "Changes to This Policy", "Contact & Grievances"
-              ].map((item, i) => (
-                <a 
-                  key={item} 
-                  href={`#s${i+1}`} 
-                  className="group flex items-center justify-between py-5 border-b border-[#e0d9d0]/60 hover:border-[#b8903a] transition-all"
-                >
-                  <div className="flex items-baseline gap-6">
-                    <span className="font-serif text-[14px] text-[#b8903a] opacity-60 group-hover:opacity-100 transition-opacity">{(i+1).toString().padStart(2, '0')}</span>
-                    <span className="text-[18px] sm:text-[20px] font-light group-hover:translate-x-2 transition-transform duration-300">{item}</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-full border border-[#e0d9d0] flex items-center justify-center group-hover:bg-[#b8903a] group-hover:border-[#b8903a] transition-all">
-                    <ArrowLeft size={14} className="rotate-180 text-[#6b6560] group-hover:text-white transition-colors" />
-                  </div>
+        <div className="py-6 border-b border-[#e0d9d0]">
+          <h2 className="font-serif text-xl font-normal mb-3">Table of Contents</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-1.5">
+            {[
+              "Who We Are", "Scope & Application", "Information We Collect", "How We Use Your Information",
+              "Legal Basis for Processing", "Sharing & Disclosure", "International Data Transfers",
+              "Data Retention", "Security", "Cookies & Tracking", "Your Rights by Region",
+              "Third-Party Links", "Children's Privacy", "Changes to This Policy", "Contact & Grievances"
+            ].map((item, i) => (
+              <li key={item}>
+                <a href={`#s${i+1}`} className="text-[#6b6560] hover:text-[#b8903a] text-sm flex items-center gap-2">
+                  <span className="text-[#b8903a] text-xs font-medium">{i+1}.</span>
+                  {item}
                 </a>
-              ))}
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Sections */}
@@ -317,17 +251,17 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
         </div>
 
         {/* Footer */}
-        <footer className="py-12 sm:py-16 border-t border-[#e0d9d0]">
-          <div className="bg-[#0d0d0d] text-[#f5f0e8] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
+        <footer className="py-6 sm:py-8 border-t border-[#e0d9d0]">
+          <div className="bg-[#0d0d0d] text-[#f5f0e8] p-5 sm:p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
             <div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-light mb-2">Privacy Enquiries</h3>
-              <p className="text-[13px] sm:text-[14px] text-[#a09890]">Get in touch with us for any questions regarding your personal data</p>
+              <h3 className="font-serif text-xl sm:text-2xl font-light mb-1">Privacy Enquiries</h3>
+              <p className="text-[12px] sm:text-[13px] text-[#a09890]">Get in touch with us for any questions regarding your personal data</p>
             </div>
-            <a href="mailto:contactprosify@gmail.com" className="font-serif text-lg sm:text-xl text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-colors">
+            <a href="mailto:contactprosify@gmail.com" className="font-serif text-base sm:text-lg text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-colors">
               contactprosify@gmail.com
             </a>
           </div>
-          <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-[12px] text-[#6b6560] tracking-wider">
+          <div className="mt-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-[11px] text-[#6b6560] tracking-wider">
             <div className="flex items-center gap-2 sm:gap-3">
               <img src={logo} alt="Logo" className="w-6 h-6 sm:w-8 sm:h-8 object-contain" />
               <span className="font-bebas text-xl sm:text-2xl tracking-[0.2em] sm:tracking-[0.3em] text-[#b8903a]">PROSIFY</span>
@@ -342,19 +276,15 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
 function Section({ id, num, title, children }: { id: string, num: string, title: string, children: React.ReactNode }) {
   return (
-    <section id={id} className="py-20 sm:py-32 border-b border-[#e0d9d0] scroll-mt-24 last:border-0">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-        <div className="md:w-1/3">
-          <div className="sticky top-32">
-            <span className="font-serif text-xl text-[#b8903a] font-medium block mb-4">{num}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal leading-tight tracking-tight">{title}</h2>
-          </div>
-        </div>
-        <div className="md:w-2/3">
-          <div className="space-y-6 text-[16px] sm:text-[18px] leading-[1.8] text-[#2a2620] font-light">
-            {children}
-          </div>
-        </div>
+    <section id={id} className="py-6 border-b border-[#e0d9d0] scroll-mt-24 last:border-0 block w-full">
+      <div className="mb-3">
+        <h2 className="font-serif text-xl sm:text-2xl font-normal text-[#0d0d0d] flex items-baseline gap-3">
+          <span className="text-[#b8903a] text-base sm:text-lg font-medium">{num}.</span>
+          {title}
+        </h2>
+      </div>
+      <div className="space-y-3 text-[14px] sm:text-[15px] leading-[1.6] text-[#2a2620]">
+        {children}
       </div>
     </section>
   );
@@ -371,10 +301,10 @@ function SummaryItem({ title, desc }: { title: string, desc: string }) {
 
 function ListItem({ label, children }: { label?: string, children: React.ReactNode }) {
   return (
-    <li className="flex gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-[#e0d9d0] text-[14px] sm:text-[15px] leading-relaxed last:border-0">
+    <li className="flex gap-2 sm:gap-3 py-1 sm:py-1.5 border-b border-[#e0d9d0] text-[13px] sm:text-[14px] leading-relaxed last:border-0">
       <span className="text-[#b8903a] shrink-0 mt-1">—</span>
       <div>
-        {label && <strong className="text-[#0d0d0d] mr-2">{label}:</strong>}
+        {label && <strong className="text-[#0d0d0d] mr-1.5">{label}:</strong>}
         {children}
       </div>
     </li>
