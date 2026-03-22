@@ -11,9 +11,9 @@ interface PrivacyPolicyProps {
 export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="fixed inset-0 z-[2000] bg-[#fdfcfa] text-[#0d0d0d] overflow-y-auto font-sans selection:bg-[#b8903a]/20"
     >
       {/* Navigation */}
@@ -34,66 +34,104 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
       <div className="max-w-[900px] mx-auto px-4 sm:px-8 md:px-12">
         {/* Hero */}
-        <header className="pt-16 sm:pt-24 pb-12 sm:pb-16 border-b border-[#e0d9d0]">
-          <h1 className="font-serif text-[clamp(2.5rem,10vw,5.5rem)] font-light leading-[1.1] sm:leading-[1.05] tracking-tight mb-8 sm:mb-10">
-            Privacy<br /><span className="italic text-[#b8903a]">Policy</span>
-          </h1>
-          <div className="flex flex-wrap gap-6 sm:gap-10">
-            <div className="text-[10px] sm:text-[11px] tracking-[0.08em] text-[#6b6560] uppercase">
-              Effective Date<span className="block text-[12px] sm:text-[13px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">22 March 2026</span>
+        <header className="pt-16 sm:pt-32 pb-16 sm:pb-24 border-b border-[#e0d9d0]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+            <div className="max-w-2xl">
+              <h1 className="font-serif text-[clamp(3rem,12vw,7rem)] font-light leading-[0.95] tracking-tight mb-8">
+                Privacy<br />
+                <span className="italic text-[#b8903a] ml-[0.2em]">Standards</span>
+              </h1>
+              <p className="text-[18px] sm:text-[20px] leading-relaxed text-[#2a2620] font-light max-w-xl">
+                Our commitment to your data sovereignty, explained with clarity and transparency.
+              </p>
             </div>
-            <div className="text-[10px] sm:text-[11px] tracking-[0.08em] text-[#6b6560] uppercase">
-              Last Revised<span className="block text-[12px] sm:text-[13px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">22 March 2026</span>
-            </div>
-            <div className="text-[10px] sm:text-[11px] tracking-[0.08em] text-[#6b6560] uppercase">
-              Applies To<span className="block text-[12px] sm:text-[13px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">Global Clients & Visitors</span>
+            <div className="flex flex-col gap-6 border-l border-[#e0d9d0] pl-8 pb-2">
+              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
+                Version 2.0
+              </div>
+              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
+                Effective<span className="block text-[14px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">22 March 2026</span>
+              </div>
+              <div className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#6b6560] uppercase font-medium">
+                Jurisdiction<span className="block text-[14px] text-[#0d0d0d] mt-1 normal-case font-normal tracking-normal">Global / India</span>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Intro */}
-        <div className="py-10 sm:py-12 border-b border-[#e0d9d0] space-y-5 sm:space-y-6">
-          <p className="text-[15px] sm:text-[17px] leading-[1.8] sm:leading-[1.9] text-[#2a2620]">
-            Prosify is a premium virtual content and communication agency based in India, serving clients and collaborators across India, the European Union, the United Kingdom, the United States, Canada, Australia, the Gulf Cooperation Council region, and beyond. Because we work across borders, this Privacy Policy has been written to meet or exceed the standards required by the major data protection frameworks in the jurisdictions where our clients are based.
-          </p>
-          <p className="text-[15px] sm:text-[17px] leading-[1.8] sm:leading-[1.9] text-[#2a2620]">
-            This policy explains in plain language what information we collect, why we collect it, how we use and protect it, how long we keep it, and what rights you have, regardless of where you are in the world. If you have questions, write to us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/30 hover:border-[#b8903a]">contactprosify@gmail.com</a>.
-          </p>
+        {/* Quick Summary / TL;DR */}
+        <div className="py-16 sm:py-24 grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-[#e0d9d0]">
+          <div className="md:col-span-1">
+            <h2 className="font-serif text-2xl italic text-[#b8903a] mb-4">At a Glance</h2>
+            <p className="text-[13px] tracking-wider uppercase text-[#6b6560] leading-relaxed">
+              The core principles that guide our data handling.
+            </p>
+          </div>
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <SummaryItem title="No Data Sales" desc="We never sell, rent, or trade your personal information to third parties." />
+            <SummaryItem title="No Trackers" desc="Our website uses zero cookies, pixels, or automated tracking systems." />
+            <SummaryItem title="Purpose Only" desc="We only collect data necessary to deliver your specific project." />
+            <SummaryItem title="Global Rights" desc="We honour GDPR, DPDPA, and CCPA rights for all users worldwide." />
+          </div>
+        </div>
 
-          <div className="bg-[#0d0d0d] text-[#f5f0e8] p-6 sm:p-8 md:p-10 my-8 sm:my-10">
-            <p className="text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#d4a84b] font-medium mb-3">Regulatory Frameworks Honoured</p>
-            <h3 className="font-serif text-xl sm:text-2xl font-light leading-tight mb-6">This policy is aligned with the following global standards</h3>
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {['GDPR, EU / UK', 'DPDPA 2023, India', 'CCPA / CPRA, California', 'PIPEDA, Canada', 'Privacy Act 1988, Australia', 'IT Act 2000, India'].map(tag => (
-                <span key={tag} className="text-[9px] sm:text-[11px] tracking-[0.05em] sm:tracking-[0.08em] uppercase px-2 sm:px-3 py-1 border border-[#b8903a]/40 text-[#d4a84b]">{tag}</span>
-              ))}
-            </div>
+        {/* Intro & Frameworks */}
+        <div className="py-16 sm:py-24 border-b border-[#e0d9d0]">
+          <div className="max-w-2xl space-y-8">
+            <p className="text-[17px] sm:text-[19px] leading-[1.8] text-[#2a2620]">
+              Prosify is a premium virtual content and communication agency based in India, serving a global clientele. Because we work across borders, this Privacy Policy has been written to meet or exceed the standards required by the major data protection frameworks worldwide.
+            </p>
+            <p className="text-[17px] sm:text-[19px] leading-[1.8] text-[#2a2620]">
+              This policy explains in plain language what information we collect, why we collect it, and how we protect it. If you have questions, write to us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/30 hover:border-[#b8903a]">contactprosify@gmail.com</a>.
+            </p>
           </div>
 
-          <div className="bg-[#f0ece4] border-l-2 border-[#b8903a] p-5 sm:p-6 md:p-8 text-[14px] sm:text-[16px] leading-[1.7] sm:leading-[1.75]">
-            We do not sell, rent, trade, or broker your personal information to anyone, under any circumstances. Your data exists solely to enable us to serve you well.
+          <div className="mt-20 bg-[#f9f7f2] border border-[#e0d9d0] p-8 sm:p-12">
+            <div className="flex flex-col lg:flex-row gap-12">
+              <div className="lg:w-1/3">
+                <span className="text-[11px] tracking-[0.2em] uppercase text-[#b8903a] font-semibold block mb-4">Compliance</span>
+                <h3 className="font-serif text-3xl font-light leading-tight">Global Regulatory Alignment</h3>
+              </div>
+              <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-6">
+                {['GDPR (EU/UK)', 'DPDPA (India)', 'CCPA (USA)', 'PIPEDA (Canada)', 'Privacy Act (AU)', 'IT Act (India)'].map(tag => (
+                  <div key={tag} className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#b8903a]" />
+                    <span className="text-[12px] tracking-wide text-[#6b6560] uppercase">{tag}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* TOC */}
-        <div className="py-10 sm:py-14 border-b border-[#e0d9d0]">
-          <p className="text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#6b6560] font-medium mb-6 sm:mb-8">Contents</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-12">
-            {[
-              "Who We Are", "Scope & Application", "Information We Collect", "How We Use Your Information",
-              "Legal Basis for Processing", "Sharing & Disclosure", "International Data Transfers",
-              "Data Retention", "Security", "Cookies & Tracking", "Your Rights by Region",
-              "Third-Party Links", "Children's Privacy", "Changes to This Policy", "Contact & Grievances"
-            ].map((item, i) => (
-              <a 
-                key={item} 
-                href={`#s${i+1}`} 
-                className="flex items-baseline gap-3 py-2.5 sm:py-3 border-b border-[#e0d9d0] text-[14px] sm:text-[15px] hover:text-[#b8903a] transition-colors group"
-              >
-                <span className="font-serif text-[12px] sm:text-[13px] text-[#b8903a] font-medium min-w-[20px] sm:min-w-[24px]">{(i+1).toString().padStart(2, '0')}</span>
-                {item}
-              </a>
-            ))}
+        <div className="py-20 sm:py-32 border-b border-[#e0d9d0]">
+          <div className="flex flex-col md:flex-row gap-16">
+            <div className="md:w-1/3">
+              <h2 className="font-serif text-4xl font-light sticky top-32">Index of<br /><span className="italic text-[#b8903a]">Provisions</span></h2>
+            </div>
+            <div className="md:w-2/3 grid grid-cols-1 gap-1">
+              {[
+                "Who We Are", "Scope & Application", "Information We Collect", "How We Use Your Information",
+                "Legal Basis for Processing", "Sharing & Disclosure", "International Data Transfers",
+                "Data Retention", "Security", "Cookies & Tracking", "Your Rights by Region",
+                "Third-Party Links", "Children's Privacy", "Changes to This Policy", "Contact & Grievances"
+              ].map((item, i) => (
+                <a 
+                  key={item} 
+                  href={`#s${i+1}`} 
+                  className="group flex items-center justify-between py-5 border-b border-[#e0d9d0]/60 hover:border-[#b8903a] transition-all"
+                >
+                  <div className="flex items-baseline gap-6">
+                    <span className="font-serif text-[14px] text-[#b8903a] opacity-60 group-hover:opacity-100 transition-opacity">{(i+1).toString().padStart(2, '0')}</span>
+                    <span className="text-[18px] sm:text-[20px] font-light group-hover:translate-x-2 transition-transform duration-300">{item}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full border border-[#e0d9d0] flex items-center justify-center group-hover:bg-[#b8903a] group-hover:border-[#b8903a] transition-all">
+                    <ArrowLeft size={14} className="rotate-180 text-[#6b6560] group-hover:text-white transition-colors" />
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -304,15 +342,30 @@ export default function PrivacyPolicy({ onClose }: PrivacyPolicyProps) {
 
 function Section({ id, num, title, children }: { id: string, num: string, title: string, children: React.ReactNode }) {
   return (
-    <section id={id} className="py-10 sm:py-16 border-b border-[#e0d9d0] scroll-mt-24">
-      <div className="flex items-baseline gap-3 sm:gap-5 mb-6 sm:mb-8">
-        <span className="font-serif text-base sm:text-lg text-[#b8903a] font-medium shrink-0">{num}</span>
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal leading-tight tracking-tight">{title}</h2>
-      </div>
-      <div className="space-y-4 sm:space-y-5 text-[15px] sm:text-[16px] leading-[1.75] sm:leading-[1.85] text-[#2a2620]">
-        {children}
+    <section id={id} className="py-20 sm:py-32 border-b border-[#e0d9d0] scroll-mt-24 last:border-0">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+        <div className="md:w-1/3">
+          <div className="sticky top-32">
+            <span className="font-serif text-xl text-[#b8903a] font-medium block mb-4">{num}</span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal leading-tight tracking-tight">{title}</h2>
+          </div>
+        </div>
+        <div className="md:w-2/3">
+          <div className="space-y-6 text-[16px] sm:text-[18px] leading-[1.8] text-[#2a2620] font-light">
+            {children}
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function SummaryItem({ title, desc }: { title: string, desc: string }) {
+  return (
+    <div className="space-y-2">
+      <h4 className="font-serif text-lg font-medium text-[#0d0d0d]">{title}</h4>
+      <p className="text-[14px] text-[#6b6560] leading-relaxed">{desc}</p>
+    </div>
   );
 }
 
