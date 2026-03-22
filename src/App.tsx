@@ -6,8 +6,9 @@ import {
   X,
   Menu
 } from "lucide-react";
-import { useState, useEffect } from "react";
-const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxMFYxMzBDNDEwIDEzMCA0MTAgMzAwIDE3MCAzMDAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
+import { useState, useEffect, Suspense, lazy } from "react";
+const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
+const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
 // const logo = "/logo.svg";
 
@@ -555,41 +556,9 @@ export default function App() {
       {/* Privacy Policy Modal */}
       <AnimatePresence>
         {showPrivacy && (
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowPrivacy(false)}
-              className="absolute inset-0 bg-ink/95 backdrop-blur-xl"
-            />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white text-ink w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl p-8 md:p-12"
-            >
-              <button 
-                onClick={() => setShowPrivacy(false)}
-                className="absolute top-6 right-6 text-ink/40 hover:text-ink transition-colors"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                <X size={24} />
-              </button>
-              <h2 className="font-serif text-5xl mb-8 text-gold">Privacy Policy</h2>
-              <div className="space-y-6 text-sm leading-relaxed text-ink/80">
-                <p>Prosify is a premium virtual content and communication agency based in India, serving clients worldwide. This policy explains how we handle your data.</p>
-                <h3 className="font-bold text-ink text-lg">1. Information We Collect</h3>
-                <p>We collect information strictly necessary to provide our services, primarily shared via email correspondence. This includes your name, contact details, and project-related materials.</p>
-                <h3 className="font-bold text-ink text-lg">2. How We Use Data</h3>
-                <p>Your data is used solely for service delivery, project communication, and invoicing. We do not sell or rent your information to third parties.</p>
-                <h3 className="font-bold text-ink text-lg">3. Security</h3>
-                <p>We implement industry-standard security measures to protect your information. All project files are stored in access-controlled environments.</p>
-                <p className="pt-8 border-t border-ink/10 text-xs text-ink/40">Last Updated: 22 March 2026</p>
-              </div>
-            </motion.div>
-          </div>
+          <Suspense fallback={<div className="fixed inset-0 z-[2000] bg-[#fdfcfa] flex items-center justify-center text-gold font-serif italic text-2xl">Loading...</div>}>
+            <PrivacyPolicy onClose={() => setShowPrivacy(false)} />
+          </Suspense>
         )}
       </AnimatePresence>
     </div>
