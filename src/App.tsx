@@ -7,8 +7,9 @@ import {
   Menu
 } from "lucide-react";
 import { useState, useEffect } from "react";
+const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxMFYxMzBDNDEwIDEzMCA0MTAgMzAwIDE3MCAzMDAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
-const logo = "/logo.svg";
+// const logo = "/logo.svg";
 
 // --- DATA ---
 const services = [
