@@ -40,6 +40,7 @@ const sectionIds = ['hero', 'philosophy', 'services', 'process', 'testimonials',
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchActive, setIsTouchActive] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,21 +82,38 @@ export default function App() {
       mouseY.set(y);
     };
 
-    const handleMouseMove = (e: MouseEvent) => handleMove(e.clientX, e.clientY);
-    const handleTouchMove = (e: TouchEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setIsTouchActive(false);
+      handleMove(e.clientX, e.clientY);
+    };
+    const handleTouchStart = (e: TouchEvent) => {
+      setIsTouchActive(true);
       if (e.touches.length > 0) {
-        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        handleMove(e.touches[0].clientX, e.touches[0].clientY - 40);
       }
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      setIsTouchActive(true);
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX, e.touches[0].clientY - 40);
+      }
+    };
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        setIsTouchActive(false);
+      }, 1000);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchstart", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchstart", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [mouseX, mouseY]);
 
@@ -139,9 +157,10 @@ export default function App() {
           translateY: "-50%"
         }}
         animate={{
-          width: isHovering ? 60 : 36,
-          height: isHovering ? 60 : 36,
-          opacity: isHovering ? 0.3 : 0.6,
+          width: isHovering || isTouchActive ? 80 : 36,
+          height: isHovering || isTouchActive ? 80 : 36,
+          opacity: isHovering || isTouchActive ? 0.4 : 0.6,
+          scale: isTouchActive ? 1.2 : 1,
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
@@ -151,7 +170,9 @@ export default function App() {
           x: dotX, 
           y: dotY,
           translateX: "-50%",
-          translateY: "-50%"
+          translateY: "-50%",
+          opacity: isTouchActive ? 0.8 : 1,
+          scale: isTouchActive ? 1.5 : 1,
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,
