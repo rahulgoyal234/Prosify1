@@ -1,0 +1,538 @@
+import { motion, useScroll, useSpring, useMotionValue, AnimatePresence } from "motion/react";
+import { 
+  ArrowRight, 
+  Mail,
+  Quote,
+  X,
+  Menu
+} from "lucide-react";
+import { useState, useEffect } from "react";
+// import logo from "./logo.svg";
+const logo = "/logo.svg";
+
+// --- DATA ---
+const services = [
+  { icon: "◈", title: "Content Strategy", desc: "Data-driven roadmaps aligning your message with business goals and audience needs." },
+  { icon: "✦", title: "Professional Writing", desc: "Clear, persuasive copy for websites, brochures, and corporate communications." },
+  { icon: "◉", title: "Ghostwriting", desc: "Capturing your unique voice to produce high-impact books, articles, and speeches." },
+  { icon: "⟡", title: "Resume Development", desc: "Strategic career narratives designed to open doors and showcase professional value." },
+  { icon: "◌", title: "Editing & Proofreading", desc: "Polishing your work to perfection with meticulous attention to detail and flow." },
+  { icon: "⬡", title: "Thought Leadership", desc: "Establishing authority through consistent, high-quality blogging and insights." },
+  { icon: "▣", title: "Website Development", desc: "High-end, responsive digital experiences combining stunning design with functionality." },
+];
+
+const processSteps = [
+  { num: "01", title: "Discover", desc: "We dive deep into your goals, audience, and unique value proposition to understand what truly sets you apart." },
+  { num: "02", title: "Strategize", desc: "We develop a tailored content plan that aligns with your objectives and speaks directly to your audience." },
+  { num: "03", title: "Create", desc: "Our expert writers craft high-impact content that resonates deeply and compels your audience to act." },
+  { num: "04", title: "Deliver", desc: "We refine, polish, and finalize your content, ensuring every word earns its place on the page." },
+];
+
+const testimonials = [
+  { initials: "RG", name: "Riya Ghosh", role: "MBA Student", text: "As an MBA student, I wasn't sure how to position myself on paper. Prosify turned my scattered experience into a clear, confident narrative, and I got 5 interview calls I genuinely didn't expect." },
+  { initials: "CA", name: "Chetna Aggarwal", role: "Strategic Consultant", text: "The ghostwriting service was seamless. They captured my perspective perfectly, allowing me to share my vision without spending hours at a keyboard." },
+  { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
+];
+
+const sectionIds = ['hero', 'philosophy', 'services', 'process', 'testimonials', 'cta'];
+
+export default function App() {
+  const [isHovering, setIsHovering] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring for the main dot to remove any pixel-snapping jitter
+  const dotX = useSpring(mouseX, { stiffness: 1000, damping: 50, mass: 0.1 });
+  const dotY = useSpring(mouseY, { stiffness: 1000, damping: 50, mass: 0.1 });
+
+  // Spring for the lagging ring
+  const ringX = useSpring(mouseX, { stiffness: 400, damping: 30, mass: 0.1 });
+  const ringY = useSpring(mouseY, { stiffness: 400, damping: 30, mass: 0.1 });
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Cursor logic
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  // Active section logic
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      sectionIds.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+          setActiveSection(i);
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }
+  };
+
+  return (
+    <div className="bg-ink text-parchment font-sans selection:bg-gold selection:text-ink">
+      {/* Progress Bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold to-gold-light z-[200] origin-left shadow-[0_0_10px_rgba(201,168,76,0.5)]"
+        style={{ scaleX }}
+      />
+
+      {/* Custom Cursor */}
+      <motion.div 
+        className="custom-cursor fixed top-0 left-0 border border-gold rounded-full pointer-events-none z-[9998] mix-blend-difference will-change-transform"
+        style={{ 
+          x: ringX, 
+          y: ringY,
+          translateX: "-50%",
+          translateY: "-50%"
+        }}
+        animate={{
+          width: isHovering ? 60 : 36,
+          height: isHovering ? 60 : 36,
+          opacity: isHovering ? 0.3 : 0.6,
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+      <motion.div 
+        className="custom-cursor fixed top-0 left-0 w-2.5 h-2.5 bg-gold rounded-full pointer-events-none z-[9999] mix-blend-difference will-change-transform"
+        style={{ 
+          x: dotX, 
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%"
+        }}
+        animate={{
+          scale: isHovering ? 2.5 : 1,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      />
+
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-6 md:px-12 py-6 bg-ink/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
+        <a href="#hero" className="flex items-center gap-3.5 group transition-all duration-300" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+          <div className="relative w-10 h-10 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gold/5 rounded-full blur-md group-hover:bg-gold/15 transition-all" />
+            <img src={logo} alt="Prosify Logo" className="relative w-8 h-8 object-contain" />
+          </div>
+          <span className="font-bebas text-2xl tracking-[0.3em] text-gold group-hover:text-gold-light transition-colors">PROSIFY</span>
+        </a>
+        
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden text-gold p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex gap-9 list-none">
+          {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+            <li key={item}>
+              <a 
+                href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                className="text-[11px] tracking-[0.2em] uppercase text-parchment opacity-70 hover:opacity-100 hover:text-gold transition-all"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              className="fixed inset-0 bg-ink z-[90] flex flex-col items-center justify-center gap-8 md:hidden"
+            >
+              {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+                <a 
+                  key={item}
+                  href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                  className="text-2xl tracking-[0.3em] uppercase text-parchment hover:text-gold transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* Section Dots */}
+      <div className="fixed right-7 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2.5 z-[100]">
+        {sectionIds.map((id, i) => (
+          <button
+            key={id}
+            onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSection === i ? 'bg-gold scale-[1.4]' : 'bg-gold/30'}`}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          />
+        ))}
+      </div>
+
+      {/* Hero Section */}
+      <section id="hero" className="flex-col text-center">
+        <div className="hero-bg" />
+        <div className="hero-lines" />
+        <div className="relative z-10 max-w-[900px] px-6">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-[11px] tracking-[0.4em] uppercase text-gold mb-7"
+          >
+            Premium Content Agency · India & Beyond
+          </motion.p>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 1 }}
+            className="font-serif text-[clamp(48px,10vw,130px)] font-light leading-[0.9] tracking-tight text-ivory mb-7"
+          >
+            Transform<br />Ideas Into<br /><span className="italic text-gold">Narratives.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 1 }}
+            className="text-sm leading-[1.8] text-warm-grey max-w-[500px] mx-auto mb-11"
+          >
+            A fully virtual agency helping brands and professionals communicate with precision, power, and unmistakable clarity.
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 1 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-5"
+          >
+            <a 
+              href="#cta" 
+              className="px-10 py-3.5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              Start Your Story
+            </a>
+            <a 
+              href="#services" 
+              className="px-10 py-3.5 border border-gold/40 text-gold text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:bg-gold/5 transition-all"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              Explore Services
+            </a>
+          </motion.div>
+        </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5"
+        >
+          <div className="w-[1px] h-12 bg-gradient-to-b from-gold to-transparent animate-scroll-pulse" />
+          <span className="text-[10px] tracking-[0.3em] uppercase text-warm-grey">Scroll</span>
+        </motion.div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section id="philosophy" className="bg-parchment text-ink">
+        <div className="grid md:grid-cols-2 w-full h-full max-w-[1200px] px-6 md:px-12 py-20 gap-10 md:gap-15 items-center">
+          <div className="relative">
+            <div className="hidden md:block absolute -top-15 -left-5 font-serif text-[280px] font-light leading-none text-ink/5 pointer-events-none select-none">
+              01
+            </div>
+            <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-5">Our Philosophy</motion.p>
+            <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(36px,4vw,58px)] font-normal leading-[1.1] text-ink relative z-10">
+              Communication<br />is the <span className="italic text-gold">Currency</span><br />of Influence
+            </motion.h2>
+          </div>
+          <div className="flex flex-col gap-7 justify-center">
+            <motion.p {...fadeIn} className="text-[15px] leading-[1.9] text-[#3a3028]">
+              At Prosify, we believe every brand and professional has a unique story that deserves to be told with precision and power. We deliver premium, tailored content that helps you stand out in a crowded marketplace and convert interest into action.
+            </motion.p>
+            <motion.div {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="border-l-2 border-gold pl-5 font-serif text-xl italic text-ink leading-[1.6]">
+              "Words have the power<br />to change worlds."
+            </motion.div>
+            <motion.div {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="flex flex-wrap gap-8 md:gap-10">
+              <div className="stat-item">
+                <div className="font-bebas text-[52px] tracking-[0.02em] text-gold leading-none">100+</div>
+                <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Clients Served</div>
+              </div>
+              <div className="stat-item">
+                <div className="font-bebas text-[52px] tracking-[0.02em] text-gold leading-none">2+</div>
+                <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Years of Excellence</div>
+              </div>
+              <div className="stat-item">
+                <div className="font-bebas text-[52px] tracking-[0.02em] text-gold leading-none">∞</div>
+                <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Geographic Reach</div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="flex-col px-6 md:px-12 py-20 items-stretch justify-center">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 max-w-[1200px] mx-auto w-full">
+          <div>
+            <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-3">Our Expertise</motion.p>
+            <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(32px,4vw,56px)] font-light leading-[1.05] text-ivory">
+              Core <span className="italic text-gold">Services</span>
+            </motion.h2>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gold/10 max-w-[1200px] mx-auto w-full">
+          {services.map((s, i) => (
+            <motion.div 
+              key={s.title}
+              {...fadeIn}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+              className="bg-ink p-8 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/5"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              <div className="service-card-border group-hover:scale-x-100" />
+              <span className="text-[28px] mb-4 block">{s.icon}</span>
+              <h3 className="font-serif text-xl font-normal text-ivory mb-2.5 leading-[1.2]">{s.title}</h3>
+              <p className="text-[12px] leading-[1.7] text-warm-grey">{s.desc}</p>
+            </motion.div>
+          ))}
+          <motion.div 
+            {...fadeIn}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="bg-gold/5 p-8 border border-gold/15 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/10"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            <span className="text-[28px] mb-4 block text-gold">→</span>
+            <h3 className="font-serif text-xl font-normal text-gold mb-2.5 leading-[1.2]">Let's Talk</h3>
+            <p className="text-[12px] leading-[1.7] text-warm-grey">Have a unique need? We craft custom solutions for every communication challenge.</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="process" className="bg-[#0f0d0a]">
+        <div className="max-w-[1100px] px-6 md:px-12 w-full">
+          <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-3">How We Work</motion.p>
+          <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(32px,4vw,56px)] font-light leading-[1.05] text-ivory">
+            The Prosify <span className="italic text-gold">Process</span>
+          </motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 mt-14 relative">
+            <div className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-30" />
+            {processSteps.map((step, i) => (
+              <motion.div 
+                key={step.title}
+                {...fadeIn}
+                transition={{ delay: i * 0.15, duration: 0.8 }}
+                className="text-center px-4 relative"
+              >
+                <div 
+                  className="w-14 h-14 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-7 relative transition-all duration-300 hover:border-gold hover:bg-gold/10"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <span className="font-bebas text-[22px] text-gold tracking-[0.05em]">{step.num}</span>
+                </div>
+                <h3 className="font-serif text-[22px] font-normal text-ivory mb-3">{step.title}</h3>
+                <p className="text-[12px] leading-[1.7] text-warm-grey">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="bg-parchment text-ink flex-col">
+        <div className="max-w-[1100px] px-6 md:px-12 w-full">
+          <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-3">Client Success</motion.p>
+          <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(32px,4vw,56px)] font-light leading-[1.05] text-ink">
+            Voices of <span className="italic text-gold">Impact</span>
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-6 mt-14">
+            {testimonials.map((t, i) => (
+              <motion.div 
+                key={t.name}
+                {...fadeIn}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className="bg-white p-9 relative shadow-[0_4px_40px_rgba(10,8,6,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_60px_rgba(10,8,6,0.1)]"
+              >
+                <div className="font-serif text-[120px] text-gold opacity-15 absolute -top-5 left-4 leading-none pointer-events-none z-0">“</div>
+                <p className="font-serif text-[17px] italic leading-[1.7] text-[#2a2018] mb-6 relative z-10">"{t.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-gradient-to-br from-gold to-[#8a5a10] rounded-full flex items-center justify-center font-serif text-sm font-semibold text-ink">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <div className="text-[13px] font-medium text-ink">{t.name}</div>
+                    <div className="text-[11px] text-warm-grey tracking-[0.05em]">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="cta" className="flex-col text-center relative">
+        <div className="cta-bg" />
+        <div className="relative z-10 max-w-[700px] px-6">
+          <motion.p {...fadeIn} className="text-[10px] tracking-[0.4em] uppercase text-gold mb-5">Ready to Begin?</motion.p>
+          <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(44px,7vw,88px)] font-light leading-none text-ivory mb-5">
+            Elevate Your<br /><span className="italic text-gold">Narrative.</span>
+          </motion.h2>
+          <motion.p {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="text-sm text-warm-grey leading-[1.8] mb-11">
+            Experience the power of a professional virtual agency. Let's communicate your story with the precision and impact it deserves, regardless of where you are.
+          </motion.p>
+          <motion.div {...fadeIn} transition={{ delay: 0.3, duration: 0.8 }}>
+            <a 
+              href="mailto:contactprosify@gmail.com" 
+              className="px-10 py-5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              Start Your Story Today
+            </a>
+          </motion.div>
+          <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }} className="mt-8">
+            <a 
+              href="mailto:contactprosify@gmail.com" 
+              className="text-[13px] tracking-[0.1em] text-gold opacity-80 hover:opacity-100 transition-opacity"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              contactprosify@gmail.com
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="snap-start bg-[#050403] px-6 md:px-12 pt-16 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gold/10">
+        <div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-12 flex items-center justify-center bg-gold/5 rounded-lg border border-gold/10 hover:border-gold/30 transition-colors">
+              <img src={logo} alt="Prosify Logo" className="w-9 h-9 object-contain" />
+            </div>
+            <div className="font-bebas text-[28px] tracking-[0.3em] text-gold">PROSIFY</div>
+          </div>
+          <p className="text-[13px] leading-[1.8] text-warm-grey max-w-[260px]">
+            A premium virtual agency dedicated to high-impact communication for brands and professionals across India and beyond.
+          </p>
+        </div>
+        <div>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Menu</p>
+          <ul className="list-none flex flex-col gap-2.5">
+            {['About', 'Services', 'Process', 'Testimonials'].map(item => (
+              <li key={item}>
+                <a href={`#${item === 'About' ? 'philosophy' : item.toLowerCase()}`} className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>{item}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Expertise</p>
+          <ul className="list-none flex flex-col gap-2.5">
+            {['Content Strategy', 'Professional Writing', 'Ghostwriting', 'Resume Development', 'Thought Leadership'].map(item => (
+              <li key={item}>
+                <a href="#services" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>{item}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Reach Us</p>
+          <ul className="list-none flex flex-col gap-2.5">
+            <li><a href="mailto:contactprosify@gmail.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>contactprosify@gmail.com</a></li>
+          </ul>
+        </div>
+        <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-gold/10 pt-7 flex justify-between items-center">
+          <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} PROSIFY · VIRTUAL AGENCY EXCELLENCE</span>
+          <button 
+            onClick={() => setShowPrivacy(true)}
+            className="text-[11px] text-warm-grey/50 tracking-[0.1em] hover:text-warm-grey transition-colors"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            Privacy Policy
+          </button>
+        </div>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      <AnimatePresence>
+        {showPrivacy && (
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPrivacy(false)}
+              className="absolute inset-0 bg-ink/95 backdrop-blur-xl"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-white text-ink w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl p-8 md:p-12"
+            >
+              <button 
+                onClick={() => setShowPrivacy(false)}
+                className="absolute top-6 right-6 text-ink/40 hover:text-ink transition-colors"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <X size={24} />
+              </button>
+              <h2 className="font-serif text-5xl mb-8 text-gold">Privacy Policy</h2>
+              <div className="space-y-6 text-sm leading-relaxed text-ink/80">
+                <p>Prosify is a premium virtual content and communication agency based in India, serving clients worldwide. This policy explains how we handle your data.</p>
+                <h3 className="font-bold text-ink text-lg">1. Information We Collect</h3>
+                <p>We collect information strictly necessary to provide our services, primarily shared via email correspondence. This includes your name, contact details, and project-related materials.</p>
+                <h3 className="font-bold text-ink text-lg">2. How We Use Data</h3>
+                <p>Your data is used solely for service delivery, project communication, and invoicing. We do not sell or rent your information to third parties.</p>
+                <h3 className="font-bold text-ink text-lg">3. Security</h3>
+                <p>We implement industry-standard security measures to protect your information. All project files are stored in access-controlled environments.</p>
+                <p className="pt-8 border-t border-ink/10 text-xs text-ink/40">Last Updated: 22 March 2026</p>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
