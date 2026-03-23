@@ -143,7 +143,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-ink text-parchment font-sans selection:bg-gold selection:text-ink">
+    <div className="bg-ink text-parchment font-sans selection:bg-gold selection:text-ink overflow-x-hidden">
       {/* Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold to-gold-light z-[200] origin-left shadow-[0_0_10px_rgba(201,168,76,0.5)]"
@@ -280,7 +280,7 @@ export default function App() {
                       className="group flex items-center gap-4"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span className="font-serif text-5xl sm:text-6xl italic tracking-tight text-parchment group-active:text-gold transition-colors">
+                      <span className="font-serif text-4xl sm:text-6xl italic tracking-tight text-parchment group-active:text-gold transition-colors">
                         {link.label}
                       </span>
                       <ArrowRight className="text-gold opacity-0 -translate-x-4 group-active:opacity-100 group-active:translate-x-0 transition-all" size={24} />
@@ -300,7 +300,7 @@ export default function App() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
-                    <a href="mailto:contactprosify@gmail.com" className="text-lg text-parchment hover:text-gold transition-colors">contactprosify@gmail.com</a>
+                    <a href="mailto:team@contactprosify.com" className="text-lg text-parchment hover:text-gold transition-colors">team@contactprosify.com</a>
                   </div>
                 </div>
               </motion.div>
@@ -405,7 +405,7 @@ export default function App() {
             <motion.div {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="border-l-2 border-gold pl-5 font-serif text-xl italic text-ink leading-[1.6]">
               "Words have the power<br />to change worlds."
             </motion.div>
-            <motion.div {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="flex flex-wrap gap-8 md:gap-10">
+            <motion.div {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="flex flex-wrap gap-x-8 gap-y-6 md:gap-10">
               <div className="stat-item">
                 <div className="font-bebas text-[52px] tracking-[0.02em] text-gold leading-none">100+</div>
                 <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Clients Served</div>
@@ -567,7 +567,7 @@ export default function App() {
           </motion.p>
           <motion.div {...fadeIn} transition={{ delay: 0.3, duration: 0.8 }}>
             <a 
-              href="mailto:contactprosify@gmail.com" 
+              href="mailto:team@contactprosify.com" 
               className="px-10 py-5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -577,12 +577,12 @@ export default function App() {
           </motion.div>
           <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }} className="mt-8">
             <a 
-              href="mailto:contactprosify@gmail.com" 
+              href="mailto:team@contactprosify.com" 
               className="text-[13px] tracking-[0.1em] text-gold opacity-80 hover:opacity-100 transition-opacity"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              contactprosify@gmail.com
+              team@contactprosify.com
             </a>
           </motion.div>
         </div>
@@ -624,11 +624,18 @@ export default function App() {
         <div>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Reach Us</p>
           <ul className="list-none flex flex-col gap-2.5">
-            <li><a href="mailto:contactprosify@gmail.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>contactprosify@gmail.com</a></li>
+            <li><a href="mailto:team@contactprosify.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>team@contactprosify.com</a></li>
           </ul>
         </div>
-        <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-gold/10 pt-7 flex justify-between items-center">
-          <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} PROSIFY · VIRTUAL AGENCY EXCELLENCE</span>
+        <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-gold/10 pt-7 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 text-center sm:text-left">
+            <div className="flex items-center gap-2">
+              <img src={logo} alt="Prosify Logo" className="w-5 h-5 object-contain opacity-40" />
+              <span className="font-bebas text-lg tracking-[0.1em] text-gold/60">PROSIFY</span>
+            </div>
+            <span className="text-gold/20 hidden sm:block">|</span>
+            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} · VIRTUAL AGENCY EXCELLENCE</span>
+          </div>
           <button 
             onClick={() => setShowPrivacy(true)}
             className="text-[11px] text-warm-grey/50 tracking-[0.1em] hover:text-warm-grey transition-colors"

@@ -53,7 +53,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
             Prosify is a premium virtual content and communication agency based in India, serving clients and collaborators across India, the European Union, the United Kingdom, the United States, Canada, Australia, the Gulf Cooperation Council region, and beyond. Because we work across borders, this Privacy Policy has been written to meet or exceed the standards required by the major data protection frameworks in the jurisdictions where our clients are based.
           </p>
           <p className="text-[0.95rem] md:text-[0.98rem] leading-[1.8] text-[#2a2620]">
-            This policy explains in plain language what information we collect, why we collect it, how we use and protect it, how long we keep it, and what rights you have, regardless of where you are in the world. If you have questions, write to us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">contactprosify@gmail.com</a>.
+            This policy explains in plain language what information we collect, why we collect it, how we use and protect it, how long we keep it, and what rights you have, regardless of where you are in the world. If you have questions, write to us at <a href="mailto:team@contactprosify.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">team@contactprosify.com</a>.
           </p>
 
           <div className="bg-[#0d0d0d] text-[#f7f4ef] p-6 md:p-8 my-6 rounded-sm">
@@ -101,7 +101,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
             <ul className="mt-6 space-y-3">
               <DataListItem label="Business Name" value="Prosify" />
               <DataListItem label="Nature" value="Virtual Agency, India-based, globally operating" />
-              <DataListItem label="Primary Contact" value="contactprosify@gmail.com" />
+              <DataListItem label="Primary Contact" value="team@contactprosify.com" />
             </ul>
           </PolicySection>
 
@@ -228,8 +228,8 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
             <p className="mt-4">Because we do not use cookies, no cookie consent banner is presented. There is nothing to consent to on our end.</p>
           </PolicySection>
 
-          <PolicySection id="s11" num="11" title="Your Rights by Region">
-            <p>Your rights over your personal data depend on your location and the applicable law in your jurisdiction. We honour all of the following rights across all regions where they are legally established, and, as a matter of principle, we extend these same rights to all clients globally, regardless of whether local law formally requires it.</p>
+          <PolicySection id="s11" num="11" title="Your Rights">
+            <p>Your rights over your personal data are important to us. We honour the following rights for all clients globally, ensuring transparency and control over your information:</p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#e0d9d0] border border-[#e0d9d0] my-10">
               {[
@@ -240,7 +240,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                 { t: 'Right to Object', d: 'Object to processing based on legitimate interests, or to direct marketing, at any time.' },
                 { t: 'Right to Portability', d: 'Receive your data in a structured, machine-readable format where technically feasible.' },
                 { t: 'Right to Withdraw Consent', d: 'Withdraw marketing consent at any time without affecting prior lawful processing.' },
-                { t: 'Right to Grievance', d: 'File a formal complaint, addressed within 30 days as required under Indian law.' }
+                { t: 'Right to Grievance', d: 'File a formal complaint, addressed within 30 days.' }
               ].map(r => (
                 <div key={r.t} className="bg-[#fdfcfa] p-6">
                   <h5 className="font-serif text-[1.05rem] font-medium text-[#0d0d0d] mb-2">{r.t}</h5>
@@ -248,37 +248,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                 </div>
               ))}
             </div>
-
-            <h4 className="font-serif text-[1.15rem] font-medium text-[#0d0d0d] mt-12 mb-4">Region-specific entitlements</h4>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-[0.87rem] border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-[#0d0d0d]">
-                    <th className="py-3 pr-4 text-[0.68rem] tracking-[0.15em] uppercase text-[#6b6560] font-medium">Region</th>
-                    <th className="py-3 pr-4 text-[0.68rem] tracking-[0.15em] uppercase text-[#6b6560] font-medium">Applicable Law</th>
-                    <th className="py-3 text-[0.68rem] tracking-[0.15em] uppercase text-[#6b6560] font-medium">Additional Entitlements & Notes</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#e0d9d0]">
-                  {[
-                    ['European Union', 'EU GDPR (2016/679)', 'Right to lodge a complaint with your national Data Protection Authority (DPA). Responses within 30 days.'],
-                    ['United Kingdom', 'UK GDPR & DPA 2018', 'Right to complain to the Information Commissioner\'s Office (ICO). Same rights as EU GDPR.'],
-                    ['California, USA', 'CCPA / CPRA', 'Right to know, delete, opt out of sale, and non-discrimination. We do not sell personal info.'],
-                    ['Canada', 'PIPEDA', 'Right to access and correct; right to withdraw consent. Escalation to Privacy Commissioner of Canada.'],
-                    ['Australia', 'Privacy Act 1988', 'Right to access and correct. Complaints to the Office of the Australian Information Commissioner (OAIC).'],
-                    ['India', 'DPDPA 2023 & IT Act', 'Right to correction, erasure, nomination, and grievance redressal. Addressed within 30 days.'],
-                    ['GCC & Others', 'Applicable local law', 'We apply the nearest equivalent international standard. Contact us for specifics.']
-                  ].map(([r, l, n]) => (
-                    <tr key={r}>
-                      <td className="py-4 pr-4 font-medium text-[#0d0d0d] whitespace-nowrap">{r}</td>
-                      <td className="py-4 pr-4 text-[#2a2620]">{l}</td>
-                      <td className="py-4 text-[#2a2620] leading-[1.6]">{n}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-8">To exercise any of these rights, email us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">contactprosify@gmail.com</a> with the subject line <strong>"Privacy Request."</strong> We will respond within 30 days.</p>
+            <p className="mt-8 italic text-[#6b6560]">To exercise any of these rights, please contact us at <a href="mailto:team@contactprosify.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">team@contactprosify.com</a>.</p>
           </PolicySection>
 
           <PolicySection id="s12" num="12" title="Third-Party Links">
@@ -300,7 +270,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
             <p>If you have any questions, concerns, or complaints about this Privacy Policy or the way Prosify handles your personal data, we want to hear from you. We are committed to resolving all privacy matters fairly, promptly, and in good faith.</p>
             
             <h4 className="font-serif text-[1.15rem] font-medium text-[#0d0d0d] mt-8 mb-2">To contact us</h4>
-            <p>Email us at <a href="mailto:contactprosify@gmail.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">contactprosify@gmail.com</a> with the subject line <strong>"Privacy Enquiry"</strong> or <strong>"Privacy Complaint."</strong> We will acknowledge your message within 48 hours and provide a substantive response within 30 days.</p>
+            <p>Email us at <a href="mailto:team@contactprosify.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">team@contactprosify.com</a> with the subject line <strong>"Privacy Enquiry"</strong> or <strong>"Privacy Complaint."</strong> We will acknowledge your message within 48 hours and provide a substantive response within 30 days.</p>
 
             <h4 className="font-serif text-[1.15rem] font-medium text-[#0d0d0d] mt-8 mb-2">Formal grievance mechanism (India)</h4>
             <p>In accordance with the Digital Personal Data Protection Act, 2023, the Information Technology Act, 2000, and the IT Rules, 2011, you have the right to lodge a formal grievance with us. All grievances will be acknowledged and fully addressed within 30 days of receipt.</p>
@@ -315,22 +285,23 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
               <p className="text-[0.85rem] text-[#a09890]">We respond to all inquiries within 48 hours.</p>
             </div>
             <a 
-              href="mailto:contactprosify@gmail.com" 
+              href="mailto:team@contactprosify.com" 
               className="font-serif text-xl md:text-2xl text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-all pb-1"
             >
-              contactprosify@gmail.com
+              team@contactprosify.com
             </a>
           </div>
           <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[0.75rem] text-[#6b6560] tracking-[0.06em] uppercase">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2.5 sm:gap-3.5 group">
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-2.5">
                 <div className="relative w-8 h-8 flex items-center justify-center">
                   <div className="absolute inset-0 bg-gold/5 rounded-full blur-md" />
                   <img src={logo} alt="Prosify Logo" className="relative w-6 h-6 object-contain opacity-90" />
                 </div>
                 <span className="font-bebas text-xl tracking-[0.2em] text-gold">PROSIFY</span>
               </div>
-              <span>© {new Date().getFullYear()}</span>
+              <span className="text-[#e0d9d0] hidden md:block">|</span>
+              <span className="opacity-60 tracking-[0.1em]">© {new Date().getFullYear()}</span>
             </div>
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-[#b8903a] transition-colors">Back to Top</button>
           </div>

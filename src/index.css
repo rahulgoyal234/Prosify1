@@ -29,7 +29,7 @@
   }
 
   section {
-    @apply min-h-[100svh] md:h-[100svh] snap-start relative overflow-visible md:overflow-hidden flex items-center justify-center py-20 md:py-0;
+    @apply min-h-[100svh] md:h-[100svh] snap-start relative overflow-x-hidden md:overflow-hidden flex items-center justify-center py-20 md:py-0;
   }
 
   /* Allow custom cursor on touch devices if handled by JS */
