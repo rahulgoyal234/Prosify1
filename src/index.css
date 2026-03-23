@@ -13,6 +13,7 @@
   --color-gold-light: #e8c96a;
   --color-ivory: #faf7f2;
   --color-warm-grey: #8c8070;
+  --color-grey2: #8c8070;
   --color-rule: rgba(201,168,76,0.12);
 }
 
@@ -82,6 +83,3 @@
 .animate-globe-halo {
   animation: globeHalo 5s ease-in-out infinite;
 }
-
-
-
