@@ -439,7 +439,7 @@ export default function App() {
           <div className="flex-shrink-0">
             <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
               <img 
-                src="/rahul.jpg?v=1" 
+                src="/founder.jpg?v=2" 
                 alt="Rahul - Founder" 
                 className="w-full h-full object-cover scale-[1.3]"
                 style={{ objectPosition: '50% 35%' }}
