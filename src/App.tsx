@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
+import { founderPhoto } from "./assets/founder";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -439,7 +440,7 @@ export default function App() {
           <div className="flex-shrink-0">
             <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
               <img 
-                src="/rahul-profile.jpg" 
+                src={founderPhoto} 
                 alt="Rahul - Founder" 
                 className="w-full h-full object-cover scale-[1.3]"
                 style={{ objectPosition: '50% 35%' }}
