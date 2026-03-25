@@ -437,15 +437,18 @@ export default function App() {
           className="flex flex-col sm:flex-row items-center gap-10 max-w-[900px] bg-white rounded-2xl p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
         >
           <div className="flex-shrink-0">
-            <img 
-              src="/rahul.jpg" 
-              alt="Rahul - Founder" 
-              className="w-[180px] h-[180px] rounded-full object-cover object-center border-4 border-[#e0e0e0]"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
-              }}
-              referrerPolicy="no-referrer"
-            />
+            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
+              <img 
+                src="/rahul.jpg" 
+                alt="Rahul - Founder" 
+                className="w-full h-full object-cover scale-[1.3]"
+                style={{ objectPosition: '50% 35%' }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
+                }}
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
           <div className="text-center sm:text-left">
             <h2 className="m-0 mb-3 text-2xl text-[#111] font-serif font-medium">Meet Our Founder</h2>
