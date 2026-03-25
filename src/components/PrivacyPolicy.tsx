@@ -270,7 +270,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
             <p>If you have any questions, concerns, or complaints about this Privacy Policy or the way Prosify handles your personal data, we want to hear from you. We are committed to resolving all privacy matters fairly, promptly, and in good faith.</p>
             
             <h4 className="font-serif text-[1.15rem] font-medium text-[#0d0d0d] mt-8 mb-2">To contact us</h4>
-            <p>Email us at <a href="mailto:team@contactprosify.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">team@contactprosify.com</a> with the subject line <strong>"Privacy Enquiry"</strong> or <strong>"Privacy Complaint."</strong> We will acknowledge your message within 48 hours and provide a substantive response within 30 days.</p>
+            <p>Email us at <a href="mailto:team@contactprosify.com" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">team@contactprosify.com</a> or reach us via WhatsApp at <a href="https://wa.me/916371413878" target="_blank" rel="noopener noreferrer" className="text-[#b8903a] border-b border-[#b8903a]/35 hover:border-[#b8903a] transition-all">+91 6371413878</a> with the subject line <strong>"Privacy Enquiry"</strong> or <strong>"Privacy Complaint."</strong> We will acknowledge your message within 48 hours and provide a substantive response within 30 days.</p>
 
             <h4 className="font-serif text-[1.15rem] font-medium text-[#0d0d0d] mt-8 mb-2">Formal grievance mechanism (India)</h4>
             <p>In accordance with the Digital Personal Data Protection Act, 2023, the Information Technology Act, 2000, and the IT Rules, 2011, you have the right to lodge a formal grievance with us. All grievances will be acknowledged and fully addressed within 30 days of receipt.</p>
@@ -284,12 +284,22 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
               <h3 className="font-serif text-3xl font-light mb-2">Privacy Questions?</h3>
               <p className="text-[0.85rem] text-[#a09890]">We respond to all inquiries within 48 hours.</p>
             </div>
-            <a 
-              href="mailto:team@contactprosify.com" 
-              className="font-serif text-xl md:text-2xl text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-all pb-1"
-            >
-              team@contactprosify.com
-            </a>
+            <div className="flex flex-col gap-3">
+              <a 
+                href="mailto:team@contactprosify.com" 
+                className="font-serif text-xl md:text-2xl text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-all pb-1"
+              >
+                team@contactprosify.com
+              </a>
+              <a 
+                href="https://wa.me/916371413878" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-serif text-xl md:text-2xl text-[#d4a84b] border-b border-[#d4a84b]/30 hover:border-[#d4a84b] transition-all pb-1"
+              >
+                WhatsApp: +91 6371413878
+              </a>
+            </div>
           </div>
           <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[0.75rem] text-[#6b6560] tracking-[0.06em] uppercase">
             <div className="flex items-center gap-5">

@@ -302,6 +302,10 @@ export default function App() {
                     <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
                     <a href="mailto:team@contactprosify.com" className="text-lg text-parchment hover:text-gold transition-colors">team@contactprosify.com</a>
                   </div>
+                  <div>
+                    <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">WhatsApp</p>
+                    <a href="https://wa.me/916371413878" target="_blank" rel="noopener noreferrer" className="text-lg text-parchment hover:text-gold transition-colors">+91 6371413878</a>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -421,6 +425,39 @@ export default function App() {
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* Founder Section */}
+      <section id="founder" className="flex justify-center py-[60px] px-5 bg-[#f9f9f9]">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col sm:flex-row items-center gap-10 max-w-[900px] bg-white rounded-2xl p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+        >
+          <div className="flex-shrink-0">
+            <img 
+              src="/rahul.jpg" 
+              alt="Rahul - Founder" 
+              className="w-[180px] h-[180px] rounded-full object-cover object-center border-4 border-[#e0e0e0]"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
+              }}
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="text-center sm:text-left">
+            <h2 className="m-0 mb-3 text-2xl text-[#111] font-serif font-medium">Meet Our Founder</h2>
+            <p className="m-0 text-base leading-[1.7] text-[#555]">
+              As the driving force behind Prosify, Rahul Goyal combines deep strategic 
+              expertise with a relentless passion for excellence. His mission is to 
+              empower professionals and businesses to communicate with unparalleled 
+              clarity and impact, ensuring that every narrative we craft is not just 
+              heard, but remembered.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
       {/* Global Presence Section */}
@@ -575,7 +612,7 @@ export default function App() {
               Start Your Story Today
             </a>
           </motion.div>
-          <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }} className="mt-8">
+          <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }} className="mt-8 flex flex-col items-center gap-4">
             <a 
               href="mailto:team@contactprosify.com" 
               className="text-[13px] tracking-[0.1em] text-gold opacity-80 hover:opacity-100 transition-opacity"
@@ -583,6 +620,16 @@ export default function App() {
               onMouseLeave={() => setIsHovering(false)}
             >
               team@contactprosify.com
+            </a>
+            <a 
+              href="https://wa.me/916371413878" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[13px] tracking-[0.1em] text-gold opacity-80 hover:opacity-100 transition-opacity"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              WhatsApp: +91 6371413878
             </a>
           </motion.div>
         </div>
@@ -625,6 +672,7 @@ export default function App() {
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Reach Us</p>
           <ul className="list-none flex flex-col gap-2.5">
             <li><a href="mailto:team@contactprosify.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>team@contactprosify.com</a></li>
+            <li><a href="https://wa.me/916371413878" target="_blank" rel="noopener noreferrer" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>WhatsApp: +91 6371413878</a></li>
           </ul>
         </div>
         <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-gold/10 pt-7 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -634,7 +682,9 @@ export default function App() {
               <span className="font-bebas text-lg tracking-[0.1em] text-gold/60">PROSIFY</span>
             </div>
             <span className="text-gold/20 hidden sm:block">|</span>
-            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} · VIRTUAL AGENCY EXCELLENCE</span>
+            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} · PROSIFY BY RAHUL GOYAL</span>
+            <span className="text-gold/20 hidden sm:block">|</span>
+            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">VIRTUAL AGENCY EXCELLENCE</span>
           </div>
           <button 
             onClick={() => setShowPrivacy(true)}
