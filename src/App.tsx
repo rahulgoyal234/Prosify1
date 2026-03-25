@@ -439,13 +439,10 @@ export default function App() {
           <div className="flex-shrink-0">
             <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
               <img 
-                src={`/rahul-profile.jpg?t=${new Date().getTime()}`} 
+                src="/rahul-profile.jpg" 
                 alt="Rahul - Founder" 
                 className="w-full h-full object-cover scale-[1.3]"
                 style={{ objectPosition: '50% 35%' }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
-                }}
                 referrerPolicy="no-referrer"
               />
             </div>
