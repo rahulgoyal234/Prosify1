@@ -444,11 +444,11 @@ export default function App() {
           className="flex flex-col sm:flex-row items-center gap-10 max-w-[900px] bg-white rounded-2xl p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
         >
           <div className="flex-shrink-0">
-            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white p-4 flex items-center justify-center">
+            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -474,15 +474,6 @@ export default function App() {
                     <p className="m-0 text-xs text-[#777]">International Creative Writing Olympiad 2024 (Awarded by Chetan Bhagat)</p>
                   </div>
                 </div>
-                <button 
-                  onClick={() => setActiveCertificate(chetanBhagatCert)}
-                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <Eye size={12} />
-                  View
-                </button>
               </div>
               <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
                 <div className="flex items-start gap-3">
@@ -494,15 +485,6 @@ export default function App() {
                     <p className="m-0 text-xs text-[#777]">Patent Drafting Competition 2024 (IPR Week, GGSIPU)</p>
                   </div>
                 </div>
-                <button 
-                  onClick={() => setActiveCertificate(patentCert)}
-                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <Eye size={12} />
-                  View
-                </button>
               </div>
             </div>
           </div>
