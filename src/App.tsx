@@ -3,12 +3,14 @@ import {
   ArrowRight, 
   Mail,
   Quote,
+  Award,
+  Eye,
+  ExternalLink,
   X,
   Menu
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
-import { founderPhoto } from "./assets/founder";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -47,6 +49,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(0);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeCertificate, setActiveCertificate] = useState<string | null>(null);
 
   // Body scroll lock
   useEffect(() => {
@@ -440,23 +443,66 @@ export default function App() {
           <div className="flex-shrink-0">
             <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
               <img 
-                src={founderPhoto} 
+                src="/rahul.jpg" 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover scale-[1.3]"
-                style={{ objectPosition: '50% 35%' }}
+                className="w-full h-full object-cover scale-[1.4]"
+                style={{ objectPosition: '50% 42%' }}
                 referrerPolicy="no-referrer"
               />
             </div>
           </div>
           <div className="text-center sm:text-left">
             <h2 className="m-0 mb-3 text-2xl text-[#111] font-serif font-medium">Meet Our Founder</h2>
-            <p className="m-0 text-base leading-[1.7] text-[#555]">
+            <p className="m-0 text-base leading-[1.7] text-[#555] mb-6">
               As the driving force behind Prosify, Rahul Goyal combines deep strategic 
               expertise with a relentless passion for excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
               clarity and impact, ensuring that every narrative we craft is not just 
               heard, but remembered.
             </p>
+            <div className="flex flex-col gap-3">
+              <p className="m-0 text-[10px] tracking-[0.2em] uppercase text-[#c9a84c] font-medium mb-1">Key Achievements</p>
+              <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-[#c9a84c]">
+                    <Award size={16} />
+                  </div>
+                  <div>
+                    <p className="m-0 text-sm font-medium text-[#111]">Consolation Prize</p>
+                    <p className="m-0 text-xs text-[#777]">International Creative Writing Olympiad 2024 (Awarded by Chetan Bhagat)</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setActiveCertificate('/chetan-bhagat.jpeg')}
+                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <Eye size={12} />
+                  View
+                </button>
+              </div>
+              <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-[#c9a84c]">
+                    <Award size={16} />
+                  </div>
+                  <div>
+                    <p className="m-0 text-sm font-medium text-[#111]">Second Place</p>
+                    <p className="m-0 text-xs text-[#777]">Patent Drafting Competition 2024 (IPR Week, GGSIPU)</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setActiveCertificate('/patent.jpg')}
+                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <Eye size={12} />
+                  View
+                </button>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -697,6 +743,51 @@ export default function App() {
           </button>
         </div>
       </footer>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {activeCertificate && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-5 sm:p-10 bg-ink/90 backdrop-blur-sm"
+            onClick={() => setActiveCertificate(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-[1000px] max-h-full bg-white rounded-xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setActiveCertificate(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <img 
+                src={activeCertificate} 
+                alt="Certificate" 
+                className="w-full h-auto max-h-[85vh] object-contain"
+              />
+              <div className="p-4 bg-white border-t border-gray-100 flex justify-between items-center">
+                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Verifiable Achievement</p>
+                <a 
+                  href={activeCertificate} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-xs font-semibold text-gold hover:text-gold-light transition-colors"
+                >
+                  <ExternalLink size={14} />
+                  Open Original
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Privacy Policy Modal */}
       <AnimatePresence>
