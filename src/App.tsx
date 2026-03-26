@@ -474,6 +474,15 @@ export default function App() {
                     <p className="m-0 text-xs text-[#777]">International Creative Writing Olympiad 2024 (Awarded by Chetan Bhagat)</p>
                   </div>
                 </div>
+                <button 
+                  onClick={() => setActiveCertificate(chetanBhagatCert)}
+                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <Eye size={12} />
+                  View
+                </button>
               </div>
               <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
                 <div className="flex items-start gap-3">
@@ -485,6 +494,15 @@ export default function App() {
                     <p className="m-0 text-xs text-[#777]">Patent Drafting Competition 2024 (IPR Week, GGSIPU)</p>
                   </div>
                 </div>
+                <button 
+                  onClick={() => setActiveCertificate(patentCert)}
+                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <Eye size={12} />
+                  View
+                </button>
               </div>
             </div>
           </div>
