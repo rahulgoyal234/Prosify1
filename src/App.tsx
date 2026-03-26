@@ -11,6 +11,9 @@ import {
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
+const founderPhoto = "/rahul.jpg";
+const chetanBhagatCert = "/chetan-bhagat.jpeg";
+const patentCert = "/patent.jpg";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -191,7 +194,7 @@ export default function App() {
         <a href="#hero" className="flex items-center gap-2.5 sm:gap-3.5 group transition-all duration-300" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
           <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
             <div className="absolute inset-0 bg-gold/5 rounded-full blur-md group-hover:bg-gold/15 transition-all" />
-            <img src={logo} alt="Prosify Logo" className="relative w-6 h-6 sm:w-8 sm:h-8 object-contain" />
+            <img src={logo} alt="Prosify Logo" className="relative w-6 h-6 sm:w-8 sm:h-8 object-contain" referrerPolicy="no-referrer" />
           </div>
           <span className="font-bebas text-xl sm:text-2xl tracking-[0.2em] sm:tracking-[0.3em] text-gold group-hover:text-gold-light transition-colors">PROSIFY</span>
         </a>
@@ -243,7 +246,7 @@ export default function App() {
               {/* Menu Header */}
               <div className="flex justify-between items-center mb-12">
                 <div className="flex items-center gap-2.5">
-                  <img src={logo} alt="Logo" className="w-8 h-8 object-contain" />
+                  <img src={logo} alt="Logo" className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
                   <span className="font-bebas text-2xl tracking-[0.3em] text-gold">PROSIFY</span>
                 </div>
                 <button 
@@ -443,9 +446,10 @@ export default function App() {
           <div className="flex-shrink-0">
             <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white p-4 flex items-center justify-center">
               <img 
-                src="rahul.jpg" 
+                src={founderPhoto} 
                 alt="Rahul - Founder" 
                 className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
               />
             </div>
           </div>
@@ -471,7 +475,7 @@ export default function App() {
                   </div>
                 </div>
                 <button 
-                  onClick={() => setActiveCertificate('chetan-bhagat.jpeg')}
+                  onClick={() => setActiveCertificate(chetanBhagatCert)}
                   className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
@@ -491,7 +495,7 @@ export default function App() {
                   </div>
                 </div>
                 <button 
-                  onClick={() => setActiveCertificate('patent.jpg')}
+                  onClick={() => setActiveCertificate(patentCert)}
                   className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
@@ -685,7 +689,7 @@ export default function App() {
         <div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 flex items-center justify-center bg-gold/5 rounded-lg border border-gold/10 hover:border-gold/30 transition-colors">
-              <img src={logo} alt="Prosify Logo" className="w-9 h-9 object-contain" />
+              <img src={logo} alt="Prosify Logo" className="w-9 h-9 object-contain" referrerPolicy="no-referrer" />
             </div>
             <div className="font-bebas text-[28px] tracking-[0.3em] text-gold">PROSIFY</div>
           </div>
@@ -723,7 +727,7 @@ export default function App() {
         <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-gold/10 pt-7 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 text-center sm:text-left">
             <div className="flex items-center gap-2">
-              <img src={logo} alt="Prosify Logo" className="w-5 h-5 object-contain opacity-40" />
+              <img src={logo} alt="Prosify Logo" className="w-5 h-5 object-contain opacity-40" referrerPolicy="no-referrer" />
               <span className="font-bebas text-lg tracking-[0.1em] text-gold/60">PROSIFY</span>
             </div>
             <span className="text-gold/20 hidden sm:block">|</span>
@@ -769,6 +773,7 @@ export default function App() {
                 src={activeCertificate} 
                 alt="Certificate" 
                 className="w-full h-auto max-h-[85vh] object-contain"
+                referrerPolicy="no-referrer"
               />
               <div className="p-4 bg-white border-t border-gray-100 flex justify-between items-center">
                 <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Verifiable Achievement</p>
