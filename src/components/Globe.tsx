@@ -111,8 +111,8 @@ export const Globe: React.FC = () => {
 
       // Base sphere
       const base = ctx.createRadialGradient(cx - R * .22, cy - R * .18, R * .04, cx, cy, R);
-      base.addColorStop(0, '#1a1410');
-      base.addColorStop(1, '#070504');
+      base.addColorStop(0, '#2a2420');
+      base.addColorStop(1, '#0f0d0c');
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fillStyle = base;
@@ -287,8 +287,8 @@ export const Globe: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-[500px] h-[500px] max-w-[90vw] max-h-[90vw]">
-      <div className="absolute inset-[-40px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.1)_0%,transparent_62%)] pointer-events-none animate-globe-halo" />
+    <div ref={containerRef} className="relative aspect-square w-full max-w-[500px] mx-auto">
+      <div className="absolute inset-[-40px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.15)_0%,transparent_65%)] pointer-events-none animate-globe-halo" />
       <canvas ref={canvasRef} className="block w-full h-full cursor-grab active:cursor-grabbing rounded-full" />
     </div>
   );

@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
-const founderPhoto = "/rahul.jpg";
+import { founderPhoto } from "./assets/founder";
 const chetanBhagatCert = "/chetan-bhagat.jpeg";
 const patentCert = "/patent.jpg";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
