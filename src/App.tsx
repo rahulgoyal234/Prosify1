@@ -441,13 +441,11 @@ export default function App() {
           className="flex flex-col sm:flex-row items-center gap-10 max-w-[900px] bg-white rounded-2xl p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
         >
           <div className="flex-shrink-0">
-            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
+            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white p-4 flex items-center justify-center">
               <img 
-                src="/rahul.jpg" 
+                src="rahul.jpg" 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover scale-[1.4]"
-                style={{ objectPosition: '50% 42%' }}
-                referrerPolicy="no-referrer"
+                className="w-full h-full object-contain"
               />
             </div>
           </div>
@@ -473,7 +471,7 @@ export default function App() {
                   </div>
                 </div>
                 <button 
-                  onClick={() => setActiveCertificate('/chetan-bhagat.jpeg')}
+                  onClick={() => setActiveCertificate('chetan-bhagat.jpeg')}
                   className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
@@ -493,7 +491,7 @@ export default function App() {
                   </div>
                 </div>
                 <button 
-                  onClick={() => setActiveCertificate('/patent.jpg')}
+                  onClick={() => setActiveCertificate('patent.jpg')}
                   className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
