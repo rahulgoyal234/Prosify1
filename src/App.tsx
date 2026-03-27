@@ -12,7 +12,7 @@ import {
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
 import { founderPhoto } from "./assets/founder";
-const chetanBhagatCert = "/chetan-bhagat.jpeg";
+const chetanBhagatCert = "/chetan bhagat.jpg";
 const patentCert = "/patent.jpg";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
@@ -399,23 +399,23 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 1 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-5"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <a 
-              href="#cta" 
-              className="px-10 py-3.5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
+              href="#contact" 
+              className="px-12 py-4 bg-gold text-white rounded-full text-[11px] font-black uppercase tracking-[0.3em] shadow-[0_15px_30px_-10px_rgba(201,168,76,0.4)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              Start Your Story
+              Start Your Project
             </a>
             <a 
               href="#founder" 
-              className="px-10 py-3.5 border border-gold/40 text-gold text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:bg-gold/5 transition-all flex items-center gap-2"
+              className="flex items-center gap-3 px-12 py-4 border border-gold/30 text-gold rounded-full text-[11px] font-black uppercase tracking-[0.3em] hover:bg-gold/5 hover:border-gold hover:scale-105 active:scale-95 transition-all duration-300 group"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <Award size={14} />
+              <Award size={18} className="group-hover:rotate-12 transition-transform" />
               <span>View Certifications</span>
             </a>
           </motion.div>
@@ -510,14 +510,14 @@ export default function App() {
               clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
             
-            <div className="w-full space-y-10">
-              <div className="flex items-center gap-4 justify-center md:justify-start">
-                <div className="h-[2px] w-16 bg-gradient-to-r from-gold to-transparent"></div>
-                <p className="text-[14px] tracking-[0.3em] uppercase text-gold font-black drop-shadow-sm">Certifications & Honors</p>
+            <div className="w-full space-y-12">
+              <div className="flex items-center gap-6 justify-center md:justify-start">
+                <div className="h-[3px] w-20 bg-gradient-to-r from-gold via-gold-light to-transparent rounded-full"></div>
+                <p className="text-[16px] tracking-[0.4em] uppercase text-gold font-black drop-shadow-[0_2px_4px_rgba(201,168,76,0.3)]">Official Certifications</p>
               </div>
               
-              {/* 3D Shelf Container */}
-              <div className="grid gap-10 w-full max-w-2xl [perspective:2000px]">
+              {/* Compact Grid Container */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl [perspective:2000px]">
                 {[
                   {
                     title: "Consolation Prize",
@@ -538,18 +538,18 @@ export default function App() {
                 ].map((ach, idx) => (
                   <motion.div 
                     key={idx}
-                    initial={{ opacity: 0, x: -20, rotateY: -10 }}
-                    whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     whileHover={{ 
-                      rotateY: 8, 
-                      rotateX: -3,
+                      y: -5,
+                      rotateY: 5,
+                      rotateX: -2,
                       scale: 1.02,
-                      translateZ: 20,
-                      boxShadow: "0 25px 50px -12px rgba(201, 168, 76, 0.3)"
+                      boxShadow: "0 20px 40px -10px rgba(201, 168, 76, 0.25)"
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="flex flex-col sm:flex-row items-center sm:items-stretch gap-8 bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-gold/30 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:border-gold/60 transition-all group cursor-pointer relative overflow-hidden"
+                    className="flex flex-col items-center text-center bg-white/95 backdrop-blur-sm p-6 rounded-xl border border-gold/20 shadow-[0_8px_20px_-10px_rgba(0,0,0,0.1)] hover:border-gold/50 transition-all group cursor-pointer relative overflow-hidden"
                     onClick={() => setActiveCertificate(ach.cert)}
                     onMouseEnter={() => {
                       setIsHovering(true);
@@ -561,69 +561,44 @@ export default function App() {
                     }}
                   >
                     {/* Dynamic 3D Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     
-                    {/* Certificate Thumbnail with 3D Stack Effect */}
-                    <div className="relative group/thumb">
-                      {/* Pulse Glow */}
-                      <div className="absolute -inset-2 bg-gold/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse" />
+                    {/* Certificate Thumbnail - Smaller Size */}
+                    <div className="relative mb-5 group/thumb">
+                      <div className="absolute -inset-2 bg-gold/15 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       <motion.div 
-                        whileHover={{ rotateY: -15, rotateX: 5, translateZ: 40 }}
-                        className="w-32 h-44 bg-[#fdfcfa] rounded-lg overflow-hidden border-2 border-gold/20 flex-shrink-0 shadow-[10px_10px_25px_rgba(0,0,0,0.15)] relative z-10 transition-all duration-500 flex items-center justify-center"
+                        whileHover={{ rotateY: -10, rotateX: 5, translateZ: 30 }}
+                        className="w-24 h-32 bg-[#fdfcfa] rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-[5px_5px_15px_rgba(0,0,0,0.1)] relative z-10 transition-all duration-500 flex items-center justify-center"
                       >
-                        <Award size={48} className="absolute text-gold/10" />
+                        <Award size={32} className="absolute text-gold/10" />
                         <img 
                           src={ach.cert} 
                           alt="Thumbnail" 
                           className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity relative z-10"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-20" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-20" />
                         
-                        {/* Prominent Badge on Thumbnail */}
-                        <div className="absolute top-2 left-2 bg-gold text-white text-[10px] font-black px-2 py-1 rounded shadow-lg z-30 uppercase tracking-widest">
+                        <div className="absolute top-1.5 left-1.5 bg-gold text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-md z-30 uppercase tracking-widest">
                           {ach.badge}
                         </div>
                       </motion.div>
                       
-                      {/* Stacked Paper Effect (Visual 3D) */}
-                      <div className="absolute top-1 right-1 w-full h-full bg-white border border-gold/10 rounded-lg -z-10 translate-x-1 translate-y-1" />
-                      <div className="absolute top-2 right-2 w-full h-full bg-white border border-gold/10 rounded-lg -z-20 translate-x-2 translate-y-2" />
+                      {/* Stacked Paper Effect */}
+                      <div className="absolute top-0.5 right-0.5 w-full h-full bg-white border border-gold/10 rounded-lg -z-10 translate-x-1 translate-y-1" />
                     </div>
 
-                    <div className="flex-grow text-center sm:text-left flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-3 justify-center sm:justify-start">
-                        <div className="p-1.5 bg-gold/10 rounded-full">
-                          <Award size={20} className="text-gold" />
-                        </div>
-                        <h4 className="text-2xl font-serif italic text-ink leading-tight tracking-tight">{ach.title}</h4>
-                      </div>
-                      <p className="text-[15px] text-ink/80 leading-tight font-semibold mb-1">{ach.org}</p>
-                      <p className="text-[12px] uppercase tracking-[0.3em] text-gold font-black mb-6">{ach.desc}</p>
+                    <div className="flex flex-col items-center">
+                      <h4 className="text-lg font-serif italic text-ink leading-tight tracking-tight mb-1">{ach.title}</h4>
+                      <p className="text-[13px] text-ink/70 leading-tight font-medium mb-1">{ach.org}</p>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-4">{ach.desc}</p>
                       
-                      {/* Prominent, High-Visibility Button */}
-                      <div className="flex items-center gap-3 justify-center sm:justify-start">
-                        <button 
-                          className="flex items-center gap-3 px-6 py-2.5 bg-gold text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-gold/20 hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveCertificate(ach.cert);
-                          }}
-                        >
-                          <Eye size={14} />
-                          <span>View Full Certificate</span>
-                        </button>
-                        
-                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-gold/60 uppercase tracking-widest animate-pulse">
-                          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                          Verify Achievement
-                        </div>
+                      <div className="flex items-center gap-2 text-[9px] font-black text-gold/80 uppercase tracking-widest">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_5px_rgba(201,168,76,0.6)] animate-pulse" />
+                        Verified
                       </div>
                     </div>
-
-                    {/* 3D Corner Accent - More Visible */}
-                    <div className="absolute top-0 right-0 w-12 h-12 bg-gold/10 -rotate-45 translate-x-6 -translate-y-6 group-hover:bg-gold/20 transition-all duration-500" />
                   </motion.div>
                 ))}
               </div>
@@ -676,26 +651,28 @@ export default function App() {
               key={s.title}
               {...fadeIn}
               transition={{ delay: i * 0.1, duration: 0.8 }}
-              className="bg-ink p-8 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/5"
+              whileHover={{ y: -5, rotateX: 2, rotateY: 2 }}
+              className="bg-ink p-8 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/5 cursor-pointer [transform-style:preserve-3d]"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
               <div className="service-card-border group-hover:scale-x-100" />
-              <span className="text-[28px] mb-4 block">{s.icon}</span>
-              <h3 className="font-serif text-xl font-normal text-ivory mb-2.5 leading-[1.2]">{s.title}</h3>
-              <p className="text-[12px] leading-[1.7] text-warm-grey">{s.desc}</p>
+              <span className="text-[28px] mb-4 block [transform:translateZ(20px)]">{s.icon}</span>
+              <h3 className="font-serif text-xl font-normal text-ivory mb-2.5 leading-[1.2] [transform:translateZ(10px)]">{s.title}</h3>
+              <p className="text-[12px] leading-[1.7] text-warm-grey [transform:translateZ(5px)]">{s.desc}</p>
             </motion.div>
           ))}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="bg-gold/5 p-8 border border-gold/15 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/10"
+            whileHover={{ y: -5, rotateX: 2, rotateY: 2 }}
+            className="bg-gold/5 p-8 border border-gold/15 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/10 cursor-pointer [transform-style:preserve-3d]"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            <span className="text-[28px] mb-4 block text-gold">→</span>
-            <h3 className="font-serif text-xl font-normal text-gold mb-2.5 leading-[1.2]">Let's Talk</h3>
-            <p className="text-[12px] leading-[1.7] text-warm-grey">Have a unique need? We craft custom solutions for every communication challenge.</p>
+            <span className="text-[28px] mb-4 block text-gold [transform:translateZ(20px)]">→</span>
+            <h3 className="font-serif text-xl font-normal text-gold mb-2.5 leading-[1.2] [transform:translateZ(10px)]">Let's Talk</h3>
+            <p className="text-[12px] leading-[1.7] text-warm-grey [transform:translateZ(5px)]">Have a unique need? We craft custom solutions for every communication challenge.</p>
           </motion.div>
         </div>
       </section>
