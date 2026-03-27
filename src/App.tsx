@@ -210,10 +210,10 @@ export default function App() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 list-none">
-          {['About', 'Founder', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+          {['About', 'Certificates', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
             <li key={item}>
               <a 
-                href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                href={`#${item === 'About' ? 'philosophy' : item === 'Certificates' ? 'founder' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
                 className="text-[11px] tracking-[0.2em] uppercase text-parchment opacity-70 hover:opacity-100 hover:text-gold transition-all"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
@@ -270,7 +270,7 @@ export default function App() {
               >
                 {[
                   { label: 'About', href: '#philosophy' },
-                  { label: 'Founder', href: '#founder' },
+                  { label: 'Certificates', href: '#founder' },
                   { label: 'Services', href: '#services' },
                   { label: 'Process', href: '#process' },
                   { label: 'Testimonials', href: '#testimonials' },
@@ -436,28 +436,27 @@ export default function App() {
       </section>
 
       {/* Founder Section */}
-      <section id="founder" className="bg-white text-ink py-24 md:py-32 relative z-10 border-y border-gold/10 shadow-[0_-20px_50px_rgba(0,0,0,0.02)]">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 max-w-[1100px] w-full mx-auto px-6">
+      <section id="founder" className="bg-white text-ink border-y border-gold/10 relative z-10">
+        <div className="max-w-[1100px] w-full mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-20">
           <div className="relative flex-shrink-0">
-            <div className="absolute -inset-6 border-2 border-gold/5 rounded-full"></div>
-            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-ivory shadow-2xl relative z-10">
+            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-[#faf7f2] shadow-2xl">
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-xl">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <p className="text-[11px] tracking-[0.5em] uppercase text-gold mb-4 font-bold">
               The Visionary
             </p>
             <h2 className="font-serif text-[clamp(40px,6vw,58px)] font-normal leading-tight text-ink mb-6">
               Rahul <span className="italic text-gold">Goyal</span>
             </h2>
-            <p className="text-[17px] leading-[1.8] text-ink/80 mb-10 font-light">
+            <p className="text-[17px] leading-[1.8] text-ink/80 mb-10 font-light max-w-xl">
               As the driving force behind Prosify, Rahul Goyal combines strategic 
               expertise with a passion for narrative excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
@@ -465,12 +464,12 @@ export default function App() {
             </p>
             
             <div className="w-full space-y-8">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 justify-center md:justify-start">
                 <div className="h-[2px] w-12 bg-gold"></div>
                 <p className="text-[12px] tracking-[0.25em] uppercase text-gold font-extrabold">Certifications & Honors</p>
               </div>
               
-              <div className="grid gap-6 w-full">
+              <div className="grid gap-6 w-full max-w-xl">
                 {[
                   {
                     title: "Consolation Prize",
@@ -487,23 +486,22 @@ export default function App() {
                 ].map((ach, idx) => (
                   <div 
                     key={idx}
-                    className="flex items-center gap-6 bg-ivory/40 p-5 rounded-2xl border-2 border-gold/10 shadow-sm hover:border-gold/40 hover:bg-white hover:shadow-xl transition-all group cursor-pointer"
+                    className="flex items-center gap-6 bg-[#faf7f2] p-6 rounded-2xl border-2 border-gold/10 shadow-sm hover:border-gold/40 hover:bg-white hover:shadow-xl transition-all group cursor-pointer"
                     onClick={() => setActiveCertificate(ach.cert)}
                   >
                     {/* Certificate Thumbnail */}
-                    <div className="w-20 h-24 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-inner relative group-hover:border-gold/50 transition-colors">
+                    <div className="w-20 h-24 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-inner relative">
                       <img 
                         src={ach.cert} 
                         alt="Thumbnail" 
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition-colors" />
                     </div>
 
                     <div className="flex-grow text-left">
                       <div className="flex items-center gap-2 mb-1">
-                        <Award size={16} className="text-gold" />
+                        <Award size={18} className="text-gold" />
                         <h4 className="text-lg font-bold text-ink leading-tight">{ach.title}</h4>
                       </div>
                       <p className="text-[13px] text-warm-grey leading-tight font-semibold mb-1">{ach.org}</p>
@@ -511,10 +509,10 @@ export default function App() {
                     </div>
 
                     <div className="flex flex-col items-center gap-1 flex-shrink-0">
-                      <div className="w-12 h-12 flex items-center justify-center bg-gold text-white rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 flex items-center justify-center bg-gold text-white rounded-full shadow-lg">
                         <Eye size={22} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase tracking-tighter text-gold">View Full</span>
+                      <span className="text-[10px] font-bold uppercase tracking-tighter text-gold">View</span>
                     </div>
                   </div>
                 ))}

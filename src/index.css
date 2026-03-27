@@ -28,7 +28,7 @@
   }
 
   section {
-    @apply min-h-[100svh] relative overflow-x-hidden flex items-center justify-center py-20 md:py-32;
+    @apply min-h-screen relative w-full py-24 md:py-32;
   }
 
   /* Allow custom cursor on touch devices if handled by JS */
