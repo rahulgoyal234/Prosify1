@@ -317,7 +317,7 @@ export default function App() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">Inquiries</p>
-                    <a href="mailto:team@contactprosify.com" className="text-lg text-parchment hover:text-gold transition-colors">team@contactprosify.com</a>
+                    <a href="mailto:rahulgyl48@gmail.com" className="text-lg text-parchment hover:text-gold transition-colors">rahulgyl48@gmail.com</a>
                   </div>
                   <div>
                     <p className="text-[10px] tracking-[0.4em] uppercase text-gold/60 mb-3">WhatsApp</p>
@@ -379,7 +379,7 @@ export default function App() {
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <a 
-              href="#contact" 
+              href="mailto:rahulgyl48@gmail.com" 
               className="px-12 py-5 bg-gold text-white rounded-full text-[12px] font-black uppercase tracking-[0.3em] shadow-[0_20px_40px_-10px_rgba(201,168,76,0.5)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -707,7 +707,7 @@ export default function App() {
           </motion.p>
           <motion.div {...fadeIn} transition={{ delay: 0.3, duration: 0.8 }}>
             <a 
-              href="mailto:team@contactprosify.com" 
+              href="mailto:rahulgyl48@gmail.com" 
               className="px-10 py-5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -717,12 +717,12 @@ export default function App() {
           </motion.div>
           <motion.div {...fadeIn} transition={{ delay: 0.4, duration: 0.8 }} className="mt-8 flex flex-col items-center gap-4">
             <a 
-              href="mailto:team@contactprosify.com" 
+              href="mailto:rahulgyl48@gmail.com" 
               className="text-[13px] tracking-[0.1em] text-gold opacity-80 hover:opacity-100 transition-opacity"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              team@contactprosify.com
+              rahulgyl48@gmail.com
             </a>
             <a 
               href="https://wa.me/916371413878" 
@@ -774,7 +774,7 @@ export default function App() {
         <div>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Reach Us</p>
           <ul className="list-none flex flex-col gap-2.5">
-            <li><a href="mailto:team@contactprosify.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>team@contactprosify.com</a></li>
+            <li><a href="mailto:rahulgyl48@gmail.com" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>rahulgyl48@gmail.com</a></li>
             <li><a href="https://wa.me/916371413878" target="_blank" rel="noopener noreferrer" className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>WhatsApp: +91 6371413878</a></li>
           </ul>
         </div>
