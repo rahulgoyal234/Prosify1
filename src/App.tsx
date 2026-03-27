@@ -435,18 +435,18 @@ export default function App() {
         </div>
       </section>
 
-       {/* Founder Section */}
-      <section id="founder" className="bg-ivory text-ink overflow-hidden">
+      {/* Founder Section */}
+      <section id="founder" className="bg-ivory text-ink md:h-auto md:min-h-[100svh] py-24 md:py-32">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "0px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row items-center gap-8 md:gap-16 max-w-[1000px] w-full px-6 py-12 md:py-0"
+          className="flex flex-col md:flex-row items-center gap-12 md:gap-20 max-w-[1100px] w-full px-6"
         >
           <div className="relative flex-shrink-0 group">
-            <div className="absolute -inset-4 border border-gold/20 rounded-full scale-95 group-hover:scale-100 transition-transform duration-700"></div>
-            <div className="w-[220px] h-[220px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl bg-white relative z-10">
+            <div className="absolute -inset-6 border border-gold/20 rounded-full scale-95 group-hover:scale-100 transition-transform duration-1000"></div>
+            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl bg-white relative z-10">
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
@@ -461,24 +461,27 @@ export default function App() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4"
+              className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4 font-bold"
             >
               The Visionary
             </motion.p>
-            <h2 className="font-serif text-[clamp(32px,4vw,48px)] font-normal leading-tight text-ink mb-6">
+            <h2 className="font-serif text-[clamp(36px,5vw,52px)] font-normal leading-tight text-ink mb-6">
               Rahul <span className="italic text-gold">Goyal</span>
             </h2>
-            <p className="text-[15px] leading-[1.8] text-ink/80 mb-8 font-light">
+            <p className="text-[16px] leading-[1.8] text-ink/80 mb-10 font-light">
               As the driving force behind Prosify, Rahul Goyal combines strategic 
               expertise with a passion for narrative excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
               clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
             
-            <div className="w-full space-y-4">
-              <p className="text-[10px] tracking-[0.2em] uppercase text-gold font-semibold mb-2">Distinctions & Honors</p>
+            <div className="w-full space-y-6">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="h-[1px] w-8 bg-gold/40"></div>
+                <p className="text-[11px] tracking-[0.2em] uppercase text-gold font-bold">Distinctions & Honors</p>
+              </div>
               
-              <div className="grid gap-3 w-full">
+              <div className="grid gap-4 w-full">
                 {[
                   {
                     title: "Consolation Prize",
@@ -495,23 +498,23 @@ export default function App() {
                 ].map((ach, idx) => (
                   <motion.div 
                     key={idx}
-                    whileHover={{ x: 10 }}
-                    className="flex items-center justify-between bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-gold/10 hover:border-gold/30 transition-all group cursor-pointer"
+                    whileHover={{ x: 10, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+                    className="flex items-center justify-between bg-white/70 backdrop-blur-md p-5 rounded-2xl border border-gold/20 shadow-sm hover:shadow-md hover:border-gold/40 transition-all group cursor-pointer"
                     onClick={() => setActiveCertificate(ach.cert)}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="p-2 bg-gold/10 rounded-lg text-gold group-hover:bg-gold group-hover:text-ink transition-colors">
-                        <Award size={18} />
+                    <div className="flex items-center gap-5">
+                      <div className="p-3 bg-gold/10 rounded-xl text-gold group-hover:bg-gold group-hover:text-white transition-colors">
+                        <Award size={20} />
                       </div>
                       <div>
-                        <h4 className="text-sm font-medium text-ink leading-none mb-1">{ach.title}</h4>
-                        <p className="text-[11px] text-warm-grey leading-tight">{ach.org}</p>
-                        <p className="text-[10px] italic text-gold mt-0.5">{ach.desc}</p>
+                        <h4 className="text-base font-semibold text-ink leading-tight mb-1">{ach.title}</h4>
+                        <p className="text-[12px] text-warm-grey leading-tight font-medium">{ach.org}</p>
+                        <p className="text-[11px] italic text-gold mt-1">{ach.desc}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[10px] font-medium uppercase tracking-wider text-gold">Verify</span>
-                      <Eye size={14} className="text-gold" />
+                    <div className="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gold hidden sm:block">Verify</span>
+                      <Eye size={16} className="text-gold" />
                     </div>
                   </motion.div>
                 ))}
