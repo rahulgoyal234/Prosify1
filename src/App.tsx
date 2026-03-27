@@ -828,17 +828,8 @@ export default function App() {
                 alt="Certificate" 
                 className="w-full h-auto max-h-[85vh] object-contain"
               />
-              <div className="p-4 bg-white border-t border-gray-100 flex justify-between items-center">
-                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Verifiable Achievement</p>
-                <a 
-                  href={activeCertificate} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-xs font-semibold text-gold hover:text-gold-light transition-colors"
-                >
-                  <ExternalLink size={14} />
-                  Open Original
-                </a>
+              <div className="p-4 bg-white border-t border-gray-100 flex justify-center items-center">
+                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium text-center">Verifiable Achievement</p>
               </div>
             </motion.div>
           </motion.div>
