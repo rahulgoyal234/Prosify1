@@ -492,27 +492,27 @@ export default function App() {
                   setCursorText("");
                 }}
               >
-                <div className="absolute top-0 right-0 p-3">
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-full border border-green-100">
-                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[8px] font-black text-green-700 uppercase tracking-widest">Verified</span>
-                  </div>
-                </div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
                     <Award size={24} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Consolation Prize</p>
-                    <p className="text-[16px] font-serif font-bold text-ink">Creative Writing Olympiad</p>
+                    <p className="text-[16px] font-serif font-bold text-ink leading-tight">International Creative Writing Olympiad</p>
                   </div>
                 </div>
                 <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
-                  "Recognized for exceptional narrative structure and creative depth among thousands of international participants (2024)."
+                  "Recognized by <span className="text-ink font-semibold">Chetan Bhagat</span>, renowned author and columnist, for exceptional narrative structure and creative depth among thousands of international participants (2024)."
                 </p>
-                <div className="mt-auto flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
-                  <span>Verify Credential</span>
-                  <Eye size={14} />
+                <div className="mt-auto flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
+                    <span>Verify Credential</span>
+                    <Eye size={14} />
+                  </div>
+                  <div className="flex items-center gap-1 text-[9px] font-bold text-green-600 uppercase tracking-tighter">
+                    <div className="w-1 h-1 rounded-full bg-green-500" />
+                    <span>Verified</span>
+                  </div>
                 </div>
               </motion.div>
 
@@ -529,27 +529,27 @@ export default function App() {
                   setCursorText("");
                 }}
               >
-                <div className="absolute top-0 right-0 p-3">
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-full border border-green-100">
-                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[8px] font-black text-green-700 uppercase tracking-widest">Verified</span>
-                  </div>
-                </div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
                     <Shield size={24} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Second Place</p>
-                    <p className="text-[16px] font-serif font-bold text-ink">Patent Drafting Competition</p>
+                    <p className="text-[16px] font-serif font-bold text-ink leading-tight">National Patent Drafting Competition</p>
                   </div>
                 </div>
                 <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
                   "Awarded for precision in technical writing and comprehensive understanding of IPR frameworks (IPR Week 2024)."
                 </p>
-                <div className="mt-auto flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
-                  <span>Verify Credential</span>
-                  <Eye size={14} />
+                <div className="mt-auto flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
+                    <span>Verify Credential</span>
+                    <Eye size={14} />
+                  </div>
+                  <div className="flex items-center gap-1 text-[9px] font-bold text-green-600 uppercase tracking-tighter">
+                    <div className="w-1 h-1 rounded-full bg-green-500" />
+                    <span>Verified</span>
+                  </div>
                 </div>
               </motion.div>
             </div>
