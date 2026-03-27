@@ -11,8 +11,8 @@ import {
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
 import { founderPhoto } from "./assets/founder";
-const chetanBhagatCert = "/chetan_bhagat.jpg";
-const patentCert = "/patent.jpg";
+import chetanBhagatCert from "./assets/chetan_bhagat.jpg";
+import patentCert from "./assets/patent.jpg";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -828,7 +828,6 @@ export default function App() {
                 src={activeCertificate} 
                 alt="Certificate" 
                 className="w-full h-auto max-h-[85vh] object-contain"
-                referrerPolicy="no-referrer"
               />
               <div className="p-4 bg-white border-t border-gray-100 flex justify-between items-center">
                 <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Verifiable Achievement</p>
