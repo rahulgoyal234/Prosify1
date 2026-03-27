@@ -1,13 +1,12 @@
 import { motion, useScroll, useSpring, useMotionValue, AnimatePresence } from "motion/react";
 import { 
   ArrowRight, 
-  Mail,
-  Quote,
-  Award,
-  Eye,
-  ExternalLink,
   X,
-  Menu
+  Menu,
+  Award,
+  Shield,
+  Eye,
+  ExternalLink
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Globe } from "./components/Globe";
@@ -43,7 +42,7 @@ const testimonials = [
   { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
 ];
 
-const sectionIds = ['hero', 'philosophy', 'founder', 'certificates', 'global', 'services', 'process', 'testimonials', 'cta'];
+const sectionIds = ['hero', 'philosophy', 'founder', 'global', 'services', 'process', 'testimonials', 'cta'];
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
@@ -201,26 +200,6 @@ export default function App() {
         )}
       </motion.div>
 
-      {/* Floating Certificate Badge (Always Visible) */}
-      <motion.button
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        onClick={() => document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' })}
-        className="fixed right-0 top-1/3 z-[100] bg-gold text-ink p-3 rounded-l-xl shadow-2xl flex flex-col items-center gap-2 group hover:pl-6 transition-all duration-500"
-        onMouseEnter={() => {
-          setIsHovering(true);
-          setCursorText("VIEW");
-        }}
-        onMouseLeave={() => {
-          setIsHovering(false);
-          setCursorText("");
-        }}
-      >
-        <Award size={20} className="animate-bounce" />
-        <span className="[writing-mode:vertical-rl] text-[9px] font-black uppercase tracking-[0.3em] py-2">Certifications</span>
-      </motion.button>
-
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-5 md:px-12 py-4 md:py-6 bg-ink/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-gold/5 md:border-none">
         <a href="#hero" className="flex items-center gap-2.5 sm:gap-3.5 group transition-all duration-300" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
@@ -242,10 +221,10 @@ export default function App() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 list-none">
-          {['About', 'Founder', 'Certificates', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+          {['About', 'Founder', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
             <li key={item}>
               <a 
-                href={`#${item === 'About' ? 'philosophy' : item === 'Founder' ? 'founder' : item === 'Certificates' ? 'certificates' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                href={`#${item === 'About' ? 'philosophy' : item === 'Founder' ? 'founder' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
                 className="text-[11px] tracking-[0.2em] uppercase text-parchment opacity-70 hover:opacity-100 hover:text-gold transition-all"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
@@ -302,7 +281,6 @@ export default function App() {
               >
                 {[
                   { label: 'About', href: '#philosophy' },
-                  { label: 'Certificates', href: '#founder' },
                   { label: 'Services', href: '#services' },
                   { label: 'Process', href: '#process' },
                   { label: 'Testimonials', href: '#testimonials' },
@@ -403,20 +381,11 @@ export default function App() {
           >
             <a 
               href="#contact" 
-              className="px-12 py-4 bg-gold text-white rounded-full text-[11px] font-black uppercase tracking-[0.3em] shadow-[0_15px_30px_-10px_rgba(201,168,76,0.4)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
+              className="px-12 py-5 bg-gold text-white rounded-full text-[12px] font-black uppercase tracking-[0.3em] shadow-[0_20px_40px_-10px_rgba(201,168,76,0.5)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
               Start Your Project
-            </a>
-            <a 
-              href="#founder" 
-              className="flex items-center gap-3 px-12 py-4 border border-gold/30 text-gold rounded-full text-[11px] font-black uppercase tracking-[0.3em] hover:bg-gold/5 hover:border-gold hover:scale-105 active:scale-95 transition-all duration-300 group"
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <Award size={18} className="group-hover:rotate-12 transition-transform" />
-              <span>View Certifications</span>
             </a>
           </motion.div>
         </div>
@@ -503,146 +472,92 @@ export default function App() {
             <h2 className="font-serif text-[clamp(40px,6vw,58px)] font-normal leading-tight text-ink mb-6">
               Rahul <span className="italic text-gold">Goyal</span>
             </h2>
-            <p className="text-[17px] leading-[1.8] text-ink/80 mb-10 font-light max-w-xl">
+            <p className="text-[17px] leading-[1.8] text-ink/80 mb-8 font-light max-w-xl">
               As the driving force behind Prosify, Rahul Goyal combines strategic 
               expertise with a passion for narrative excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
               clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 w-full max-w-2xl">
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer"
+                onClick={() => setActiveCertificate(chetanBhagatCert)}
+                onMouseEnter={() => {
+                  setIsHovering(true);
+                  setCursorText("VIEW");
+                }}
+                onMouseLeave={() => {
+                  setIsHovering(false);
+                  setCursorText("");
+                }}
+              >
+                <div className="absolute top-0 right-0 p-3">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-full border border-green-100">
+                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-[8px] font-black text-green-700 uppercase tracking-widest">Verified</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
+                    <Award size={24} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Consolation Prize</p>
+                    <p className="text-[16px] font-serif font-bold text-ink">Creative Writing Olympiad</p>
+                  </div>
+                </div>
+                <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
+                  "Recognized for exceptional narrative structure and creative depth among thousands of international participants (2024)."
+                </p>
+                <div className="mt-auto flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
+                  <span>Verify Credential</span>
+                  <Eye size={14} />
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer"
+                onClick={() => setActiveCertificate(patentCert)}
+                onMouseEnter={() => {
+                  setIsHovering(true);
+                  setCursorText("VIEW");
+                }}
+                onMouseLeave={() => {
+                  setIsHovering(false);
+                  setCursorText("");
+                }}
+              >
+                <div className="absolute top-0 right-0 p-3">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-full border border-green-100">
+                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-[8px] font-black text-green-700 uppercase tracking-widest">Verified</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
+                    <Shield size={24} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Second Place</p>
+                    <p className="text-[16px] font-serif font-bold text-ink">Patent Drafting Competition</p>
+                  </div>
+                </div>
+                <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
+                  "Awarded for precision in technical writing and comprehensive understanding of IPR frameworks (IPR Week 2024)."
+                </p>
+                <div className="mt-auto flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
+                  <span>Verify Credential</span>
+                  <Eye size={14} />
+                </div>
+              </motion.div>
+            </div>
             
             <div className="flex items-center gap-6 justify-center md:justify-start">
               <div className="h-[3px] w-20 bg-gradient-to-r from-gold via-gold-light to-transparent rounded-full"></div>
-              <a href="#certificates" className="text-[16px] tracking-[0.4em] uppercase text-gold font-black hover:text-gold-light transition-colors">View All Credentials</a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dedicated Certificates Section */}
-      <section id="certificates" className="py-32 bg-[#fdfcfa] relative overflow-hidden">
-        {/* Background Accents */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="text-center mb-24">
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-[12px] tracking-[0.6em] uppercase text-gold mb-6 font-black"
-            >
-              Verified Achievements
-            </motion.p>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="font-serif text-[clamp(40px,6vw,72px)] font-light leading-tight text-ink mb-8"
-            >
-              Proof of <span className="italic text-gold">Excellence</span>
-            </motion.h2>
-            <motion.div 
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              className="h-[1px] w-40 bg-gold/30 mx-auto"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {[
-              {
-                title: "Consolation Prize",
-                org: "International Creative Writing Olympiad 2024",
-                desc: "Awarded by Chetan Bhagat",
-                cert: chetanBhagatCert,
-                badge: "Winner",
-                id: "PRO-2024-CB-001",
-                date: "Oct 2024",
-                details: "Recognized for exceptional narrative structure and creative depth among thousands of international participants."
-              },
-              {
-                title: "Second Place",
-                org: "Patent Drafting Competition 2024",
-                desc: "IPR Week, GGSIPU",
-                cert: patentCert,
-                badge: "Runner Up",
-                id: "PRO-2024-PD-002",
-                date: "Nov 2024",
-                details: "Awarded for precision in technical writing and comprehensive understanding of intellectual property rights frameworks."
-              }
-            ].map((ach, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
-                <div className="flex flex-col md:flex-row gap-10 bg-white p-10 rounded-[2rem] border border-gold/10 shadow-2xl hover:border-gold/30 transition-all duration-500">
-                  {/* Certificate Image Side */}
-                  <div className="w-full md:w-1/2 flex justify-center items-center">
-                    <motion.div 
-                      whileHover={{ scale: 1.05, rotateY: -10 }}
-                      className="relative w-full aspect-[3/4] max-w-[280px] bg-white shadow-[20px_20px_60px_rgba(0,0,0,0.15)] rounded-sm overflow-hidden border-8 border-ink/5 cursor-zoom-in"
-                      onClick={() => setActiveCertificate(ach.cert)}
-                    >
-                      <img 
-                        src={ach.cert} 
-                        alt={ach.title} 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&h=800&auto=format&fit=crop";
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors" />
-                      <div className="absolute top-4 left-4 bg-gold text-white text-[10px] font-black px-3 py-1.5 rounded-sm shadow-xl uppercase tracking-widest">
-                        {ach.badge}
-                      </div>
-                      <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Eye size={20} className="text-gold" />
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Content Side */}
-                  <div className="w-full md:w-1/2 flex flex-col justify-center">
-                    <div className="mb-6">
-                      <h4 className="text-3xl font-serif italic text-ink mb-2 leading-tight">{ach.title}</h4>
-                      <p className="text-[14px] text-gold font-black uppercase tracking-[0.2em] mb-4">{ach.org}</p>
-                      <p className="text-[15px] text-ink/70 leading-relaxed italic mb-6">"{ach.details}"</p>
-                    </div>
-
-                    <div className="space-y-4 mb-8">
-                      <div className="flex justify-between items-center py-3 border-b border-gold/10">
-                        <span className="text-[10px] uppercase tracking-widest text-ink/40 font-black">Credential ID</span>
-                        <span className="text-[12px] font-mono text-gold font-bold">{ach.id}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b border-gold/10">
-                        <span className="text-[10px] uppercase tracking-widest text-ink/40 font-black">Issue Date</span>
-                        <span className="text-[12px] font-mono text-ink/80 font-bold">{ach.date}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b border-gold/10">
-                        <span className="text-[10px] uppercase tracking-widest text-ink/40 font-black">Status</span>
-                        <span className="flex items-center gap-2 text-[10px] font-black text-green-600 uppercase tracking-widest">
-                          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                          Verified
-                        </span>
-                      </div>
-                    </div>
-
-                    <button 
-                      className="w-full py-4 bg-ink text-gold rounded-xl text-[12px] font-black uppercase tracking-[0.2em] hover:bg-gold hover:text-ink transition-all duration-300 shadow-xl"
-                      onClick={() => setActiveCertificate(ach.cert)}
-                    >
-                      View Full Document
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -886,7 +801,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Certificate Modal */}
+      {/* Privacy Policy Modal */}
       <AnimatePresence>
         {activeCertificate && (
           <motion.div 
@@ -932,7 +847,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Privacy Policy Modal */}
       <AnimatePresence>
         {showPrivacy && (
           <Suspense fallback={<div className="fixed inset-0 z-[2000] bg-[#fdfcfa] flex items-center justify-center text-gold font-serif italic text-2xl">Loading...</div>}>
