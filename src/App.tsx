@@ -438,15 +438,26 @@ export default function App() {
       {/* Founder Section */}
       <section id="founder" className="bg-white text-ink border-y border-gold/10 relative z-10">
         <div className="max-w-[1100px] w-full mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-20">
-          <div className="relative flex-shrink-0">
-            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-[#faf7f2] shadow-2xl">
+          <div className="relative flex-shrink-0 [perspective:1000px]">
+            <motion.div 
+              whileHover={{ 
+                rotateY: -10, 
+                rotateX: 5,
+                scale: 1.05,
+                translateZ: 30
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-[#faf7f2] shadow-2xl relative z-10 cursor-pointer"
+            >
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
+            <div className="absolute -inset-4 border border-gold/10 rounded-full animate-pulse" />
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -469,7 +480,7 @@ export default function App() {
                 <p className="text-[12px] tracking-[0.25em] uppercase text-gold font-extrabold">Certifications & Honors</p>
               </div>
               
-              <div className="grid gap-6 w-full max-w-xl">
+              <div className="grid gap-8 w-full max-w-xl [perspective:1000px]">
                 {[
                   {
                     title: "Consolation Prize",
@@ -484,37 +495,46 @@ export default function App() {
                     cert: patentCert
                   }
                 ].map((ach, idx) => (
-                  <div 
+                  <motion.div 
                     key={idx}
-                    className="flex items-center gap-6 bg-[#faf7f2] p-6 rounded-2xl border-2 border-gold/10 shadow-sm hover:border-gold/40 hover:bg-white hover:shadow-xl transition-all group cursor-pointer"
+                    whileHover={{ 
+                      rotateY: 8, 
+                      rotateX: -2,
+                      scale: 1.02,
+                      translateZ: 20
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="flex items-center gap-6 bg-white p-6 rounded-2xl border border-gold/10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.3)] hover:border-gold/30 transition-all group cursor-pointer relative overflow-hidden"
                     onClick={() => setActiveCertificate(ach.cert)}
                   >
-                    {/* Certificate Thumbnail */}
-                    <div className="w-20 h-24 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-inner relative">
+                    {/* Subtle 3D Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    
+                    {/* Certificate Thumbnail with 3D shadow */}
+                    <div className="w-24 h-32 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-[5px_5px_15px_rgba(0,0,0,0.1)] relative group-hover:shadow-[10px_10px_25px_rgba(201,168,76,0.2)] transition-all duration-500">
                       <img 
                         src={ach.cert} 
                         alt="Thumbnail" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                         referrerPolicy="no-referrer"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
                     </div>
 
                     <div className="flex-grow text-left">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-2 mb-2">
                         <Award size={18} className="text-gold" />
-                        <h4 className="text-lg font-bold text-ink leading-tight">{ach.title}</h4>
+                        <h4 className="text-xl font-serif italic text-ink leading-tight">{ach.title}</h4>
                       </div>
-                      <p className="text-[13px] text-warm-grey leading-tight font-semibold mb-1">{ach.org}</p>
-                      <p className="text-[12px] italic text-gold font-medium">{ach.desc}</p>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-1 flex-shrink-0">
-                      <div className="w-12 h-12 flex items-center justify-center bg-gold text-white rounded-full shadow-lg">
-                        <Eye size={22} />
+                      <p className="text-[14px] text-ink/70 leading-tight font-medium mb-1">{ach.org}</p>
+                      <p className="text-[12px] uppercase tracking-widest text-gold/80 font-bold">{ach.desc}</p>
+                      
+                      <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <span>Verify Achievement</span>
+                        <ArrowRight size={12} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase tracking-tighter text-gold">View</span>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
