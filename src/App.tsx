@@ -53,6 +53,7 @@ export default function App() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCertificate, setActiveCertificate] = useState<string | null>(null);
+  const [cursorText, setCursorText] = useState("");
 
   // Body scroll lock
   useEffect(() => {
@@ -159,22 +160,6 @@ export default function App() {
 
       {/* Custom Cursor */}
       <motion.div 
-        className="custom-cursor fixed top-0 left-0 border border-gold rounded-full pointer-events-none z-[9998] md:mix-blend-difference will-change-transform"
-        style={{ 
-          x: ringX, 
-          y: ringY,
-          translateX: "-50%",
-          translateY: "-50%"
-        }}
-        animate={{
-          width: isHovering || isTouchActive ? 80 : 36,
-          height: isHovering || isTouchActive ? 80 : 36,
-          opacity: hasMoved ? (isHovering || isTouchActive ? 0.5 : 0.3) : 0,
-          scale: isTouchActive ? 1.2 : 1,
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-      <motion.div 
         className="custom-cursor fixed top-0 left-0 w-2.5 h-2.5 bg-gold rounded-full pointer-events-none z-[9999] md:mix-blend-difference will-change-transform"
         style={{ 
           x: dotX, 
@@ -188,6 +173,53 @@ export default function App() {
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
       />
+      <motion.div 
+        className="custom-cursor fixed top-0 left-0 border border-gold/30 rounded-full pointer-events-none z-[9998] md:mix-blend-difference will-change-transform flex items-center justify-center overflow-hidden"
+        style={{ 
+          x: ringX, 
+          y: ringY,
+          translateX: "-50%",
+          translateY: "-50%"
+        }}
+        animate={{
+          width: isHovering || isTouchActive ? 100 : 40,
+          height: isHovering || isTouchActive ? 100 : 40,
+          opacity: hasMoved ? (isHovering || isTouchActive ? 0.6 : 0.4) : 0,
+          scale: isTouchActive ? 1.2 : 1,
+          backgroundColor: isHovering ? "rgba(201, 168, 76, 0.1)" : "transparent"
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        {cursorText && (
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-[8px] font-black text-gold tracking-[0.2em] uppercase"
+          >
+            {cursorText}
+          </motion.span>
+        )}
+      </motion.div>
+
+      {/* Floating Certificate Badge (Always Visible) */}
+      <motion.button
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        onClick={() => document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' })}
+        className="fixed right-0 top-1/3 z-[100] bg-gold text-ink p-3 rounded-l-xl shadow-2xl flex flex-col items-center gap-2 group hover:pl-6 transition-all duration-500"
+        onMouseEnter={() => {
+          setIsHovering(true);
+          setCursorText("VIEW");
+        }}
+        onMouseLeave={() => {
+          setIsHovering(false);
+          setCursorText("");
+        }}
+      >
+        <Award size={20} className="animate-bounce" />
+        <span className="[writing-mode:vertical-rl] text-[9px] font-black uppercase tracking-[0.3em] py-2">Certifications</span>
+      </motion.button>
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-5 md:px-12 py-4 md:py-6 bg-ink/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-gold/5 md:border-none">
@@ -437,8 +469,11 @@ export default function App() {
       </section>
 
       {/* Founder Section */}
-      <section id="founder" className="bg-white text-ink border-y border-gold/10 relative z-10">
-        <div className="max-w-[1100px] w-full mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+      <section id="founder" className="bg-[#faf9f6] text-ink border-y border-gold/15 relative z-10 overflow-hidden">
+        {/* Background Decorative Gradient */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(201,168,76,0.05)_0%,transparent_70%)] pointer-events-none" />
+        
+        <div className="max-w-[1100px] w-full mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
           <div className="relative flex-shrink-0 [perspective:1000px]">
             <motion.div 
               whileHover={{ 
@@ -448,7 +483,7 @@ export default function App() {
                 translateZ: 30
               }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-[#faf7f2] shadow-2xl relative z-10 cursor-pointer"
+              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10 cursor-pointer"
             >
               <img 
                 src={founderPhoto} 
@@ -462,7 +497,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <p className="text-[11px] tracking-[0.5em] uppercase text-gold mb-4 font-bold">
+            <p className="text-[11px] tracking-[0.5em] uppercase text-gold mb-4 font-black">
               The Visionary
             </p>
             <h2 className="font-serif text-[clamp(40px,6vw,58px)] font-normal leading-tight text-ink mb-6">
@@ -475,85 +510,120 @@ export default function App() {
               clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
             
-            <div className="w-full space-y-8">
+            <div className="w-full space-y-10">
               <div className="flex items-center gap-4 justify-center md:justify-start">
-                <div className="h-[2px] w-12 bg-gold"></div>
-                <p className="text-[12px] tracking-[0.25em] uppercase text-gold font-extrabold">Certifications & Honors</p>
+                <div className="h-[2px] w-16 bg-gradient-to-r from-gold to-transparent"></div>
+                <p className="text-[14px] tracking-[0.3em] uppercase text-gold font-black drop-shadow-sm">Certifications & Honors</p>
               </div>
-              <div className="grid gap-6 w-full max-w-xl [perspective:1000px]">
+              
+              {/* 3D Shelf Container */}
+              <div className="grid gap-10 w-full max-w-2xl [perspective:2000px]">
                 {[
                   {
                     title: "Consolation Prize",
                     org: "International Creative Writing Olympiad 2024",
                     desc: "Awarded by Chetan Bhagat",
                     cert: chetanBhagatCert,
-                    badge: "Winner"
+                    badge: "Winner",
+                    color: "from-gold/20 to-gold/5"
                   },
                   {
                     title: "Second Place",
                     org: "Patent Drafting Competition 2024",
                     desc: "IPR Week, GGSIPU",
                     cert: patentCert,
-                    badge: "Runner Up"
+                    badge: "Runner Up",
+                    color: "from-gold/15 to-gold/5"
                   }
                 ].map((ach, idx) => (
                   <motion.div 
                     key={idx}
+                    initial={{ opacity: 0, x: -20, rotateY: -10 }}
+                    whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                    viewport={{ once: true }}
                     whileHover={{ 
-                      rotateY: 5, 
-                      rotateX: -2,
-                      scale: 1.01,
-                      translateZ: 10
+                      rotateY: 8, 
+                      rotateX: -3,
+                      scale: 1.02,
+                      translateZ: 20,
+                      boxShadow: "0 25px 50px -12px rgba(201, 168, 76, 0.3)"
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="flex items-center gap-5 bg-white p-5 rounded-xl border border-gold/20 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_35px_-15px_rgba(201,168,76,0.25)] hover:border-gold/40 transition-all group cursor-pointer relative overflow-hidden"
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="flex flex-col sm:flex-row items-center sm:items-stretch gap-8 bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-gold/30 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:border-gold/60 transition-all group cursor-pointer relative overflow-hidden"
                     onClick={() => setActiveCertificate(ach.cert)}
+                    onMouseEnter={() => {
+                      setIsHovering(true);
+                      setCursorText("VIEW");
+                    }}
+                    onMouseLeave={() => {
+                      setIsHovering(false);
+                      setCursorText("");
+                    }}
                   >
-                    {/* Subtle 3D Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    {/* Dynamic 3D Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     
-                    {/* Certificate Thumbnail with 3D shadow */}
-                    <div className="w-20 h-28 bg-[#fdfcfa] rounded-md overflow-hidden border border-gold/10 flex-shrink-0 shadow-[4px_4px_12px_rgba(0,0,0,0.08)] relative group-hover:shadow-[8px_8px_20px_rgba(201,168,76,0.15)] transition-all duration-500 flex items-center justify-center">
-                      <Award size={32} className="absolute text-gold/10" />
-                      <img 
-                        src={ach.cert} 
-                        alt="Thumbnail" 
-                        className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity relative z-10"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-20" />
+                    {/* Certificate Thumbnail with 3D Stack Effect */}
+                    <div className="relative group/thumb">
+                      {/* Pulse Glow */}
+                      <div className="absolute -inset-2 bg-gold/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse" />
                       
-                      {/* Small Badge on Thumbnail */}
-                      <div className="absolute top-1 left-1 bg-gold text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-tighter shadow-sm z-30">
-                        {ach.badge}
-                      </div>
+                      <motion.div 
+                        whileHover={{ rotateY: -15, rotateX: 5, translateZ: 40 }}
+                        className="w-32 h-44 bg-[#fdfcfa] rounded-lg overflow-hidden border-2 border-gold/20 flex-shrink-0 shadow-[10px_10px_25px_rgba(0,0,0,0.15)] relative z-10 transition-all duration-500 flex items-center justify-center"
+                      >
+                        <Award size={48} className="absolute text-gold/10" />
+                        <img 
+                          src={ach.cert} 
+                          alt="Thumbnail" 
+                          className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity relative z-10"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-20" />
+                        
+                        {/* Prominent Badge on Thumbnail */}
+                        <div className="absolute top-2 left-2 bg-gold text-white text-[10px] font-black px-2 py-1 rounded shadow-lg z-30 uppercase tracking-widest">
+                          {ach.badge}
+                        </div>
+                      </motion.div>
+                      
+                      {/* Stacked Paper Effect (Visual 3D) */}
+                      <div className="absolute top-1 right-1 w-full h-full bg-white border border-gold/10 rounded-lg -z-10 translate-x-1 translate-y-1" />
+                      <div className="absolute top-2 right-2 w-full h-full bg-white border border-gold/10 rounded-lg -z-20 translate-x-2 translate-y-2" />
                     </div>
 
-                    <div className="flex-grow text-left">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <Award size={16} className="text-gold" />
-                        <h4 className="text-lg font-serif italic text-ink leading-tight">{ach.title}</h4>
+                    <div className="flex-grow text-center sm:text-left flex flex-col justify-center">
+                      <div className="flex items-center gap-3 mb-3 justify-center sm:justify-start">
+                        <div className="p-1.5 bg-gold/10 rounded-full">
+                          <Award size={20} className="text-gold" />
+                        </div>
+                        <h4 className="text-2xl font-serif italic text-ink leading-tight tracking-tight">{ach.title}</h4>
                       </div>
-                      <p className="text-[13px] text-ink/70 leading-tight font-medium mb-0.5">{ach.org}</p>
-                      <p className="text-[11px] uppercase tracking-widest text-gold/80 font-bold mb-3">{ach.desc}</p>
+                      <p className="text-[15px] text-ink/80 leading-tight font-semibold mb-1">{ach.org}</p>
+                      <p className="text-[12px] uppercase tracking-[0.3em] text-gold font-black mb-6">{ach.desc}</p>
                       
-                      {/* Small, Elegant Button - Always Visible */}
-                      <div className="flex items-center gap-2">
+                      {/* Prominent, High-Visibility Button */}
+                      <div className="flex items-center gap-3 justify-center sm:justify-start">
                         <button 
-                          className="flex items-center gap-2 px-3 py-1.5 bg-gold/5 border border-gold/20 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300"
+                          className="flex items-center gap-3 px-6 py-2.5 bg-gold text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-gold/20 hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
                           onClick={(e) => {
                             e.stopPropagation();
                             setActiveCertificate(ach.cert);
                           }}
                         >
-                          <Eye size={12} />
-                          <span>View Certificate</span>
+                          <Eye size={14} />
+                          <span>View Full Certificate</span>
                         </button>
+                        
+                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-gold/60 uppercase tracking-widest animate-pulse">
+                          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                          Verify Achievement
+                        </div>
                       </div>
                     </div>
 
-                    {/* 3D Corner Accent */}
-                    <div className="absolute top-0 right-0 w-8 h-8 bg-gold/5 -rotate-45 translate-x-4 -translate-y-4 group-hover:bg-gold/10 transition-colors" />
+                    {/* 3D Corner Accent - More Visible */}
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-gold/10 -rotate-45 translate-x-6 -translate-y-6 group-hover:bg-gold/20 transition-all duration-500" />
                   </motion.div>
                 ))}
               </div>
