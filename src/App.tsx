@@ -378,12 +378,13 @@ export default function App() {
               Start Your Story
             </a>
             <a 
-              href="#services" 
-              className="px-10 py-3.5 border border-gold/40 text-gold text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:bg-gold/5 transition-all"
+              href="#founder" 
+              className="px-10 py-3.5 border border-gold/40 text-gold text-[11px] tracking-[0.2em] uppercase hover:border-gold hover:bg-gold/5 transition-all flex items-center gap-2"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              Explore Services
+              <Award size={14} />
+              <span>View Certifications</span>
             </a>
           </motion.div>
         </div>
@@ -479,61 +480,80 @@ export default function App() {
                 <div className="h-[2px] w-12 bg-gold"></div>
                 <p className="text-[12px] tracking-[0.25em] uppercase text-gold font-extrabold">Certifications & Honors</p>
               </div>
-              
-              <div className="grid gap-8 w-full max-w-xl [perspective:1000px]">
+              <div className="grid gap-6 w-full max-w-xl [perspective:1000px]">
                 {[
                   {
                     title: "Consolation Prize",
                     org: "International Creative Writing Olympiad 2024",
                     desc: "Awarded by Chetan Bhagat",
-                    cert: chetanBhagatCert
+                    cert: chetanBhagatCert,
+                    badge: "Winner"
                   },
                   {
                     title: "Second Place",
                     org: "Patent Drafting Competition 2024",
                     desc: "IPR Week, GGSIPU",
-                    cert: patentCert
+                    cert: patentCert,
+                    badge: "Runner Up"
                   }
                 ].map((ach, idx) => (
                   <motion.div 
                     key={idx}
                     whileHover={{ 
-                      rotateY: 8, 
+                      rotateY: 5, 
                       rotateX: -2,
-                      scale: 1.02,
-                      translateZ: 20
+                      scale: 1.01,
+                      translateZ: 10
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="flex items-center gap-6 bg-white p-6 rounded-2xl border border-gold/10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.3)] hover:border-gold/30 transition-all group cursor-pointer relative overflow-hidden"
+                    className="flex items-center gap-5 bg-white p-5 rounded-xl border border-gold/20 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_35px_-15px_rgba(201,168,76,0.25)] hover:border-gold/40 transition-all group cursor-pointer relative overflow-hidden"
                     onClick={() => setActiveCertificate(ach.cert)}
                   >
                     {/* Subtle 3D Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     
                     {/* Certificate Thumbnail with 3D shadow */}
-                    <div className="w-24 h-32 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-[5px_5px_15px_rgba(0,0,0,0.1)] relative group-hover:shadow-[10px_10px_25px_rgba(201,168,76,0.2)] transition-all duration-500">
+                    <div className="w-20 h-28 bg-[#fdfcfa] rounded-md overflow-hidden border border-gold/10 flex-shrink-0 shadow-[4px_4px_12px_rgba(0,0,0,0.08)] relative group-hover:shadow-[8px_8px_20px_rgba(201,168,76,0.15)] transition-all duration-500 flex items-center justify-center">
+                      <Award size={32} className="absolute text-gold/10" />
                       <img 
                         src={ach.cert} 
                         alt="Thumbnail" 
-                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                        className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity relative z-10"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-20" />
+                      
+                      {/* Small Badge on Thumbnail */}
+                      <div className="absolute top-1 left-1 bg-gold text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-tighter shadow-sm z-30">
+                        {ach.badge}
+                      </div>
                     </div>
 
                     <div className="flex-grow text-left">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Award size={18} className="text-gold" />
-                        <h4 className="text-xl font-serif italic text-ink leading-tight">{ach.title}</h4>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Award size={16} className="text-gold" />
+                        <h4 className="text-lg font-serif italic text-ink leading-tight">{ach.title}</h4>
                       </div>
-                      <p className="text-[14px] text-ink/70 leading-tight font-medium mb-1">{ach.org}</p>
-                      <p className="text-[12px] uppercase tracking-widest text-gold/80 font-bold">{ach.desc}</p>
+                      <p className="text-[13px] text-ink/70 leading-tight font-medium mb-0.5">{ach.org}</p>
+                      <p className="text-[11px] uppercase tracking-widest text-gold/80 font-bold mb-3">{ach.desc}</p>
                       
-                      <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                        <span>Verify Achievement</span>
-                        <ArrowRight size={12} />
+                      {/* Small, Elegant Button - Always Visible */}
+                      <div className="flex items-center gap-2">
+                        <button 
+                          className="flex items-center gap-2 px-3 py-1.5 bg-gold/5 border border-gold/20 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveCertificate(ach.cert);
+                          }}
+                        >
+                          <Eye size={12} />
+                          <span>View Certificate</span>
+                        </button>
                       </div>
                     </div>
+
+                    {/* 3D Corner Accent */}
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-gold/5 -rotate-45 translate-x-4 -translate-y-4 group-hover:bg-gold/10 transition-colors" />
                   </motion.div>
                 ))}
               </div>
@@ -786,7 +806,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-5 sm:p-10 bg-ink/90 backdrop-blur-sm"
+            className="fixed inset-0 z-[5000] flex items-center justify-center p-5 sm:p-10 bg-ink/95 backdrop-blur-md"
             onClick={() => setActiveCertificate(null)}
           >
             <motion.div 
