@@ -435,95 +435,86 @@ export default function App() {
         </div>
       </section>
 
-      {/* Founder Section */}
-      <section id="founder" className="flex justify-center py-[60px] px-5 bg-[#f9f9f9]">
+       {/* Founder Section */}
+      <section id="founder" className="bg-ivory text-ink overflow-hidden">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col sm:flex-row items-center gap-10 max-w-[900px] bg-white rounded-2xl p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+          viewport={{ once: true, margin: "0px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col md:flex-row items-center gap-8 md:gap-16 max-w-[1000px] w-full px-6 py-12 md:py-0"
         >
-          <div className="flex-shrink-0">
-            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-[#e0e0e0] shadow-md bg-white">
+          <div className="relative flex-shrink-0 group">
+            <div className="absolute -inset-4 border border-gold/20 rounded-full scale-95 group-hover:scale-100 transition-transform duration-700"></div>
+            <div className="w-[220px] h-[220px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl bg-white relative z-10">
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center scale-110 group-hover:scale-100 transition-transform duration-1000"
                 referrerPolicy="no-referrer"
               />
             </div>
           </div>
-          <div className="text-center sm:text-left">
-            <h2 className="m-0 mb-3 text-2xl text-[#111] font-serif font-medium">Meet Our Founder</h2>
-            <p className="m-0 text-base leading-[1.7] text-[#555] mb-6">
-              As the driving force behind Prosify, Rahul Goyal combines deep strategic 
-              expertise with a relentless passion for excellence. His mission is to 
+
+          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-xl">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4"
+            >
+              The Visionary
+            </motion.p>
+            <h2 className="font-serif text-[clamp(32px,4vw,48px)] font-normal leading-tight text-ink mb-6">
+              Rahul <span className="italic text-gold">Goyal</span>
+            </h2>
+            <p className="text-[15px] leading-[1.8] text-ink/80 mb-8 font-light">
+              As the driving force behind Prosify, Rahul Goyal combines strategic 
+              expertise with a passion for narrative excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
-              clarity and impact, ensuring that every narrative we craft is not just 
-              heard, but remembered.
+              clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
-            <div className="flex flex-col gap-3">
-              <p className="m-0 text-[10px] tracking-[0.2em] uppercase text-[#c9a84c] font-medium mb-1">Key Achievements</p>
-              <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 text-[#c9a84c]">
-                    <Award size={16} />
-                  </div>
-                  <div>
-                    <p className="m-0 text-sm font-medium text-[#111]">Consolation Prize</p>
-                    <p className="m-0 text-xs text-[#777]">International Creative Writing Olympiad 2024 (Awarded by Chetan Bhagat)</p>
-                    <div className="mt-2 flex items-center gap-3">
-                      <div 
-                        className="w-12 h-16 bg-gray-100 rounded border border-gray-200 overflow-hidden cursor-pointer hover:border-gold transition-colors"
-                        onClick={() => setActiveCertificate(chetanBhagatCert)}
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                      >
-                        <img src={chetanBhagatCert} alt="Chetan Bhagat Certificate Thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            
+            <div className="w-full space-y-4">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-gold font-semibold mb-2">Distinctions & Honors</p>
+              
+              <div className="grid gap-3 w-full">
+                {[
+                  {
+                    title: "Consolation Prize",
+                    org: "International Creative Writing Olympiad 2024",
+                    desc: "Awarded by Chetan Bhagat",
+                    cert: chetanBhagatCert
+                  },
+                  {
+                    title: "Second Place",
+                    org: "Patent Drafting Competition 2024",
+                    desc: "IPR Week, GGSIPU",
+                    cert: patentCert
+                  }
+                ].map((ach, idx) => (
+                  <motion.div 
+                    key={idx}
+                    whileHover={{ x: 10 }}
+                    className="flex items-center justify-between bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-gold/10 hover:border-gold/30 transition-all group cursor-pointer"
+                    onClick={() => setActiveCertificate(ach.cert)}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="p-2 bg-gold/10 rounded-lg text-gold group-hover:bg-gold group-hover:text-ink transition-colors">
+                        <Award size={18} />
                       </div>
-                      <button 
-                        onClick={() => setActiveCertificate(chetanBhagatCert)}
-                        className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                      >
-                        <Eye size={12} />
-                        View Full
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 text-[#c9a84c]">
-                    <Award size={16} />
-                  </div>
-                  <div>
-                    <p className="m-0 text-sm font-medium text-[#111]">Second Place</p>
-                    <p className="m-0 text-xs text-[#777]">Patent Drafting Competition 2024 (IPR Week, GGSIPU)</p>
-                    <div className="mt-2 flex items-center gap-3">
-                      <div 
-                        className="w-12 h-16 bg-gray-100 rounded border border-gray-200 overflow-hidden cursor-pointer hover:border-gold transition-colors"
-                        onClick={() => setActiveCertificate(patentCert)}
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                      >
-                        <img src={patentCert} alt="Patent Certificate Thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      <div>
+                        <h4 className="text-sm font-medium text-ink leading-none mb-1">{ach.title}</h4>
+                        <p className="text-[11px] text-warm-grey leading-tight">{ach.org}</p>
+                        <p className="text-[10px] italic text-gold mt-0.5">{ach.desc}</p>
                       </div>
-                      <button 
-                        onClick={() => setActiveCertificate(patentCert)}
-                        className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                      >
-                        <Eye size={12} />
-                        View Full
-                      </button>
                     </div>
-                  </div>
-                </div>
+                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-gold">Verify</span>
+                      <Eye size={14} className="text-gold" />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
