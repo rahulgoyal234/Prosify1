@@ -19,17 +19,16 @@
 
 @layer base {
   html {
-    @apply snap-y snap-mandatory scroll-smooth;
+    @apply scroll-smooth;
     overflow-y: scroll;
   }
   
   body {
     @apply bg-ink text-parchment font-sans font-light overflow-x-hidden;
-    cursor: none;
   }
 
   section {
-    @apply min-h-[100svh] md:h-[100svh] snap-start relative overflow-x-hidden md:overflow-hidden flex items-center justify-center py-20 md:py-0;
+    @apply min-h-[100svh] relative overflow-x-hidden flex items-center justify-center py-20 md:py-32;
   }
 
   /* Allow custom cursor on touch devices if handled by JS */

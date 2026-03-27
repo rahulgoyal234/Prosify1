@@ -400,7 +400,7 @@ export default function App() {
 
       {/* Philosophy Section */}
       <section id="philosophy" className="bg-parchment text-ink">
-        <div className="grid md:grid-cols-2 w-full h-full max-w-[1200px] px-6 md:px-12 py-20 gap-10 md:gap-15 items-center">
+        <div className="grid md:grid-cols-2 w-full max-w-[1200px] px-6 md:px-12 py-24 md:py-32 gap-10 md:gap-15 items-center mx-auto">
           <div className="relative">
             <div className="hidden md:block absolute -top-15 -left-5 font-serif text-[280px] font-light leading-none text-ink/5 pointer-events-none select-none">
               01
@@ -436,52 +436,41 @@ export default function App() {
       </section>
 
       {/* Founder Section */}
-      <section id="founder" className="bg-ivory text-ink md:h-auto md:min-h-[100svh] py-24 md:py-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row items-center gap-12 md:gap-20 max-w-[1100px] w-full px-6"
-        >
-          <div className="relative flex-shrink-0 group">
-            <div className="absolute -inset-6 border border-gold/20 rounded-full scale-95 group-hover:scale-100 transition-transform duration-1000"></div>
-            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl bg-white relative z-10">
+      <section id="founder" className="bg-white text-ink py-24 md:py-32 relative z-10 border-y border-gold/10 shadow-[0_-20px_50px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 max-w-[1100px] w-full mx-auto px-6">
+          <div className="relative flex-shrink-0">
+            <div className="absolute -inset-6 border-2 border-gold/5 rounded-full"></div>
+            <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-ivory shadow-2xl relative z-10">
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover object-center scale-110 group-hover:scale-100 transition-transform duration-1000"
+                className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
               />
             </div>
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-xl">
-            <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4 font-bold"
-            >
+            <p className="text-[11px] tracking-[0.5em] uppercase text-gold mb-4 font-bold">
               The Visionary
-            </motion.p>
-            <h2 className="font-serif text-[clamp(36px,5vw,52px)] font-normal leading-tight text-ink mb-6">
+            </p>
+            <h2 className="font-serif text-[clamp(40px,6vw,58px)] font-normal leading-tight text-ink mb-6">
               Rahul <span className="italic text-gold">Goyal</span>
             </h2>
-            <p className="text-[16px] leading-[1.8] text-ink/80 mb-10 font-light">
+            <p className="text-[17px] leading-[1.8] text-ink/80 mb-10 font-light">
               As the driving force behind Prosify, Rahul Goyal combines strategic 
               expertise with a passion for narrative excellence. His mission is to 
               empower professionals and businesses to communicate with unparalleled 
               clarity, ensuring every story we craft is not just heard, but remembered.
             </p>
             
-            <div className="w-full space-y-6">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="h-[1px] w-8 bg-gold/40"></div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-gold font-bold">Distinctions & Honors</p>
+            <div className="w-full space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="h-[2px] w-12 bg-gold"></div>
+                <p className="text-[12px] tracking-[0.25em] uppercase text-gold font-extrabold">Certifications & Honors</p>
               </div>
               
-              <div className="grid gap-4 w-full">
+              <div className="grid gap-6 w-full">
                 {[
                   {
                     title: "Consolation Prize",
@@ -496,32 +485,43 @@ export default function App() {
                     cert: patentCert
                   }
                 ].map((ach, idx) => (
-                  <motion.div 
+                  <div 
                     key={idx}
-                    whileHover={{ x: 10, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-                    className="flex items-center justify-between bg-white/70 backdrop-blur-md p-5 rounded-2xl border border-gold/20 shadow-sm hover:shadow-md hover:border-gold/40 transition-all group cursor-pointer"
+                    className="flex items-center gap-6 bg-ivory/40 p-5 rounded-2xl border-2 border-gold/10 shadow-sm hover:border-gold/40 hover:bg-white hover:shadow-xl transition-all group cursor-pointer"
                     onClick={() => setActiveCertificate(ach.cert)}
                   >
-                    <div className="flex items-center gap-5">
-                      <div className="p-3 bg-gold/10 rounded-xl text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                        <Award size={20} />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-semibold text-ink leading-tight mb-1">{ach.title}</h4>
-                        <p className="text-[12px] text-warm-grey leading-tight font-medium">{ach.org}</p>
-                        <p className="text-[11px] italic text-gold mt-1">{ach.desc}</p>
-                      </div>
+                    {/* Certificate Thumbnail */}
+                    <div className="w-20 h-24 bg-white rounded-lg overflow-hidden border border-gold/20 flex-shrink-0 shadow-inner relative group-hover:border-gold/50 transition-colors">
+                      <img 
+                        src={ach.cert} 
+                        alt="Thumbnail" 
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition-colors" />
                     </div>
-                    <div className="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-gold hidden sm:block">Verify</span>
-                      <Eye size={16} className="text-gold" />
+
+                    <div className="flex-grow text-left">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Award size={16} className="text-gold" />
+                        <h4 className="text-lg font-bold text-ink leading-tight">{ach.title}</h4>
+                      </div>
+                      <p className="text-[13px] text-warm-grey leading-tight font-semibold mb-1">{ach.org}</p>
+                      <p className="text-[12px] italic text-gold font-medium">{ach.desc}</p>
                     </div>
-                  </motion.div>
+
+                    <div className="flex flex-col items-center gap-1 flex-shrink-0">
+                      <div className="w-12 h-12 flex items-center justify-center bg-gold text-white rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                        <Eye size={22} />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-tighter text-gold">View Full</span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Global Presence Section */}
