@@ -43,7 +43,7 @@ const testimonials = [
   { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
 ];
 
-const sectionIds = ['hero', 'philosophy', 'global', 'services', 'process', 'testimonials', 'cta'];
+const sectionIds = ['hero', 'philosophy', 'founder', 'global', 'services', 'process', 'testimonials', 'cta'];
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
@@ -210,7 +210,7 @@ export default function App() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 list-none">
-          {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+          {['About', 'Founder', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
             <li key={item}>
               <a 
                 href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
@@ -270,6 +270,7 @@ export default function App() {
               >
                 {[
                   { label: 'About', href: '#philosophy' },
+                  { label: 'Founder', href: '#founder' },
                   { label: 'Services', href: '#services' },
                   { label: 'Process', href: '#process' },
                   { label: 'Testimonials', href: '#testimonials' },
@@ -472,17 +473,27 @@ export default function App() {
                   <div>
                     <p className="m-0 text-sm font-medium text-[#111]">Consolation Prize</p>
                     <p className="m-0 text-xs text-[#777]">International Creative Writing Olympiad 2024 (Awarded by Chetan Bhagat)</p>
+                    <div className="mt-2 flex items-center gap-3">
+                      <div 
+                        className="w-12 h-16 bg-gray-100 rounded border border-gray-200 overflow-hidden cursor-pointer hover:border-gold transition-colors"
+                        onClick={() => setActiveCertificate(chetanBhagatCert)}
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                      >
+                        <img src={chetanBhagatCert} alt="Chetan Bhagat Certificate Thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      </div>
+                      <button 
+                        onClick={() => setActiveCertificate(chetanBhagatCert)}
+                        className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                      >
+                        <Eye size={12} />
+                        View Full
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <button 
-                  onClick={() => setActiveCertificate(chetanBhagatCert)}
-                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <Eye size={12} />
-                  View
-                </button>
               </div>
               <div className="flex items-start justify-between gap-3 bg-[#fdfdfd] p-3 rounded-lg border border-[#eee] group">
                 <div className="flex items-start gap-3">
@@ -492,17 +503,27 @@ export default function App() {
                   <div>
                     <p className="m-0 text-sm font-medium text-[#111]">Second Place</p>
                     <p className="m-0 text-xs text-[#777]">Patent Drafting Competition 2024 (IPR Week, GGSIPU)</p>
+                    <div className="mt-2 flex items-center gap-3">
+                      <div 
+                        className="w-12 h-16 bg-gray-100 rounded border border-gray-200 overflow-hidden cursor-pointer hover:border-gold transition-colors"
+                        onClick={() => setActiveCertificate(patentCert)}
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                      >
+                        <img src={patentCert} alt="Patent Certificate Thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      </div>
+                      <button 
+                        onClick={() => setActiveCertificate(patentCert)}
+                        className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                      >
+                        <Eye size={12} />
+                        View Full
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <button 
-                  onClick={() => setActiveCertificate(patentCert)}
-                  className="flex items-center gap-1 text-[10px] font-medium text-gold hover:text-gold-light transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <Eye size={12} />
-                  View
-                </button>
               </div>
             </div>
           </div>
