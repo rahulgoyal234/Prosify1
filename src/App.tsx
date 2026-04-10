@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring, useMotionValue, AnimatePresence } from "motion/react";
+import { motion, useScroll, useSpring, useMotionValue, AnimatePresence, useTransform } from "motion/react";
 import { 
   ArrowRight, 
   X,
@@ -6,9 +6,10 @@ import {
   Award,
   Shield,
   Eye,
-  ExternalLink
+  ExternalLink,
+  Sparkles
 } from "lucide-react";
-import { useState, useEffect, Suspense, lazy } from "react";
+import { useState, useEffect, Suspense, lazy, useRef } from "react";
 import { Globe } from "./components/Globe";
 import { founderPhoto } from "./assets/founder";
 import { chetanBhagatCert, patentCert } from "./assets/certificates";
@@ -82,6 +83,9 @@ export default function App() {
     damping: 30,
     restDelta: 0.001
   });
+
+  const heroY = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   // Cursor logic
   useEffect(() => {
@@ -352,19 +356,22 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="text-[11px] tracking-[0.4em] uppercase text-gold mb-7"
+            className="text-[11px] tracking-[0.4em] uppercase text-gold mb-7 flex items-center justify-center gap-2"
           >
+            <Sparkles size={12} className="animate-pulse" />
             Premium Content Agency · India & Beyond
+            <Sparkles size={12} className="animate-pulse" />
           </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="font-serif text-[clamp(42px,12vw,110px)] font-light leading-[0.95] tracking-tight text-ivory mb-7"
+            style={{ y: heroY, opacity: heroOpacity }}
+            className="font-serif text-[clamp(42px,12vw,110px)] font-light leading-[0.95] tracking-tight text-ivory mb-7 text-glow"
           >
             Transform<br />Ideas Into<br /><span className="italic text-gold">Narratives.</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 1 }}
@@ -380,7 +387,7 @@ export default function App() {
           >
             <a 
               href="mailto:team@contactprosify.com" 
-              className="px-12 py-5 bg-gold text-white rounded-full text-[12px] font-black uppercase tracking-[0.3em] shadow-[0_20px_40px_-10px_rgba(201,168,76,0.5)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300"
+              className="px-12 py-5 bg-gold text-white rounded-full text-[12px] font-black uppercase tracking-[0.3em] shadow-[0_20px_40px_-10px_rgba(201,168,76,0.5)] hover:bg-gold-light hover:scale-105 active:scale-95 transition-all duration-300 block"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
@@ -444,22 +451,17 @@ export default function App() {
         <div className="max-w-[1100px] w-full mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
           <div className="relative flex-shrink-0 [perspective:1000px]">
             <motion.div 
-              whileHover={{ 
-                rotateY: -10, 
-                rotateX: 5,
-                scale: 1.05,
-                translateZ: 30
-              }}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10 cursor-pointer"
+              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10 cursor-pointer group"
             >
               <img 
                 src={founderPhoto} 
                 alt="Rahul - Founder" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
             <div className="absolute -inset-4 border border-gold/10 rounded-full animate-pulse" />
           </div>
@@ -480,8 +482,8 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 w-full max-w-2xl">
               <motion.div 
-                whileHover={{ y: -5 }}
-                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer"
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer glass-card"
                 onClick={() => setActiveCertificate(chetanBhagatCert)}
                 onMouseEnter={() => {
                   setIsHovering(true);
@@ -517,8 +519,8 @@ export default function App() {
               </motion.div>
 
               <motion.div 
-                whileHover={{ y: -5 }}
-                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer"
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer glass-card"
                 onClick={() => setActiveCertificate(patentCert)}
                 onMouseEnter={() => {
                   setIsHovering(true);
@@ -605,28 +607,29 @@ export default function App() {
               key={s.title}
               {...fadeIn}
               transition={{ delay: i * 0.1, duration: 0.8 }}
-              whileHover={{ y: -5, rotateX: 2, rotateY: 2 }}
-              className="bg-ink p-8 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/5 cursor-pointer [transform-style:preserve-3d]"
+              whileHover={{ y: -10 }}
+              className="bg-ink p-8 transition-all duration-500 relative overflow-hidden group hover:bg-gold/5 cursor-pointer border border-gold/5 hover:border-gold/20"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
               <div className="service-card-border group-hover:scale-x-100" />
-              <span className="text-[28px] mb-4 block [transform:translateZ(20px)]">{s.icon}</span>
-              <h3 className="font-serif text-xl font-normal text-ivory mb-2.5 leading-[1.2] [transform:translateZ(10px)]">{s.title}</h3>
-              <p className="text-[12px] leading-[1.7] text-warm-grey [transform:translateZ(5px)]">{s.desc}</p>
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="text-[28px] mb-4 block group-hover:scale-110 transition-transform">{s.icon}</span>
+              <h3 className="font-serif text-xl font-normal text-ivory mb-2.5 leading-[1.2] group-hover:text-gold transition-colors">{s.title}</h3>
+              <p className="text-[12px] leading-[1.7] text-warm-grey">{s.desc}</p>
             </motion.div>
           ))}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4, duration: 0.8 }}
-            whileHover={{ y: -5, rotateX: 2, rotateY: 2 }}
-            className="bg-gold/5 p-8 border border-gold/15 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/10 cursor-pointer [transform-style:preserve-3d]"
+            whileHover={{ y: -5 }}
+            className="bg-gold/5 p-8 border border-gold/15 transition-colors duration-400 relative overflow-hidden group hover:bg-gold/10 cursor-pointer"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            <span className="text-[28px] mb-4 block text-gold [transform:translateZ(20px)]">→</span>
-            <h3 className="font-serif text-xl font-normal text-gold mb-2.5 leading-[1.2] [transform:translateZ(10px)]">Let's Talk</h3>
-            <p className="text-[12px] leading-[1.7] text-warm-grey [transform:translateZ(5px)]">Have a unique need? We craft custom solutions for every communication challenge.</p>
+            <span className="text-[28px] mb-4 block text-gold">→</span>
+            <h3 className="font-serif text-xl font-normal text-gold mb-2.5 leading-[1.2]">Let's Talk</h3>
+            <p className="text-[12px] leading-[1.7] text-warm-grey">Have a unique need? We craft custom solutions for every communication challenge.</p>
           </motion.div>
         </div>
       </section>
@@ -702,13 +705,17 @@ export default function App() {
           <motion.h2 {...fadeIn} transition={{ delay: 0.1, duration: 0.8 }} className="font-serif text-[clamp(44px,7vw,88px)] font-light leading-none text-ivory mb-5">
             Elevate Your<br /><span className="italic text-gold">Narrative.</span>
           </motion.h2>
-          <motion.p {...fadeIn} transition={{ delay: 0.2, duration: 0.8 }} className="text-sm text-warm-grey leading-[1.8] mb-11">
+          <motion.p
+            {...fadeIn}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-sm text-warm-grey leading-[1.8] mb-11"
+          >
             Experience the power of a professional virtual agency. Let's communicate your story with the precision and impact it deserves, regardless of where you are.
           </motion.p>
           <motion.div {...fadeIn} transition={{ delay: 0.3, duration: 0.8 }}>
             <a 
               href="mailto:team@contactprosify.com" 
-              className="px-10 py-5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all"
+              className="px-10 py-5 bg-gold text-ink text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-gold-light transition-all block"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
@@ -785,7 +792,7 @@ export default function App() {
               <span className="font-bebas text-lg tracking-[0.1em] text-gold/60">PROSIFY</span>
             </div>
             <span className="text-gold/20 hidden sm:block">|</span>
-            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} · PROSIFY BY RAHUL GOYAL</span>
+            <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">© {new Date().getFullYear()} · PROSIFY</span>
             <span className="text-gold/20 hidden sm:block">|</span>
             <span className="text-[11px] text-warm-grey/50 tracking-[0.1em]">VIRTUAL AGENCY EXCELLENCE</span>
           </div>

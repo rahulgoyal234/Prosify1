@@ -63,6 +63,18 @@
   .service-card-border {
     @apply absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold to-transparent scale-x-0 origin-left transition-transform duration-400;
   }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+  }
+
+  .mask-gradient {
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  }
 }
 
 @keyframes scrollPulse {
