@@ -3,16 +3,11 @@ import {
   ArrowRight, 
   X,
   Menu,
-  Award,
-  Shield,
-  Eye,
   ExternalLink,
   Sparkles
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy, useRef } from "react";
 import { Globe } from "./components/Globe";
-import { founderPhoto } from "./assets/founder";
-import { chetanBhagatCert, patentCert } from "./assets/certificates";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -42,7 +37,7 @@ const testimonials = [
   { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
 ];
 
-const sectionIds = ['hero', 'philosophy', 'founder', 'global', 'services', 'process', 'testimonials', 'cta'];
+const sectionIds = ['hero', 'philosophy', 'global', 'services', 'process', 'testimonials', 'cta'];
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
@@ -51,7 +46,6 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(0);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeCertificate, setActiveCertificate] = useState<string | null>(null);
   const [cursorText, setCursorText] = useState("");
 
   // Body scroll lock
@@ -224,10 +218,10 @@ export default function App() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 list-none">
-          {['About', 'Founder', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+          {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
             <li key={item}>
               <a 
-                href={`#${item === 'About' ? 'philosophy' : item === 'Founder' ? 'founder' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
+                href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
                 className="text-[11px] tracking-[0.2em] uppercase text-parchment opacity-70 hover:opacity-100 hover:text-gold transition-all"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
@@ -439,126 +433,6 @@ export default function App() {
                 <div className="text-[11px] tracking-[0.15em] uppercase text-warm-grey">Geographic Reach</div>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Section */}
-      <section id="founder" className="bg-[#faf9f6] text-ink border-y border-gold/15 relative z-10 overflow-hidden">
-        {/* Background Decorative Gradient */}
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(201,168,76,0.05)_0%,transparent_70%)] pointer-events-none" />
-        
-        <div className="max-w-[1100px] w-full mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
-          <div className="relative flex-shrink-0 [perspective:1000px]">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10 cursor-pointer group"
-            >
-              <img 
-                src={founderPhoto} 
-                alt="Rahul - Founder" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-            <div className="absolute -inset-4 border border-gold/10 rounded-full animate-pulse" />
-          </div>
-
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <p className="text-[11px] tracking-[0.5em] uppercase text-gold mb-4 font-black">
-              The Visionary
-            </p>
-            <h2 className="font-serif text-[clamp(40px,6vw,58px)] font-normal leading-tight text-ink mb-6">
-              Rahul <span className="italic text-gold">Goyal</span>
-            </h2>
-            <p className="text-[17px] leading-[1.8] text-ink/80 mb-8 font-light max-w-xl">
-              As the driving force behind Prosify, Rahul Goyal combines strategic 
-              expertise with a passion for narrative excellence. His mission is to 
-              empower professionals and businesses to communicate with unparalleled 
-              clarity, ensuring every story we craft is not just heard, but remembered.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 w-full max-w-2xl">
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer glass-card"
-                onClick={() => setActiveCertificate(chetanBhagatCert)}
-                onMouseEnter={() => {
-                  setIsHovering(true);
-                  setCursorText("VIEW");
-                }}
-                onMouseLeave={() => {
-                  setIsHovering(false);
-                  setCursorText("");
-                }}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                    <Award size={24} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Consolation Prize</p>
-                    <p className="text-[16px] font-serif font-bold text-ink leading-tight">International Creative Writing Olympiad</p>
-                  </div>
-                </div>
-                <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
-                  "Recognized by <span className="text-ink font-semibold">Chetan Bhagat</span>, renowned author and columnist, for exceptional narrative structure and creative depth among thousands of international participants (2024)."
-                </p>
-                <div className="mt-auto flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
-                    <span>Verify Credential</span>
-                    <Eye size={14} />
-                  </div>
-                  <div className="flex items-center gap-1 text-[9px] font-bold text-green-600 uppercase tracking-tighter">
-                    <div className="w-1 h-1 rounded-full bg-green-500" />
-                    <span>Verified</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="flex flex-col p-6 bg-white border border-gold/10 rounded-2xl shadow-sm group hover:border-gold/30 transition-all relative overflow-hidden cursor-pointer glass-card"
-                onClick={() => setActiveCertificate(patentCert)}
-                onMouseEnter={() => {
-                  setIsHovering(true);
-                  setCursorText("VIEW");
-                }}
-                onMouseLeave={() => {
-                  setIsHovering(false);
-                  setCursorText("");
-                }}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold/5 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                    <Shield size={24} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-black mb-0.5">Second Place</p>
-                    <p className="text-[16px] font-serif font-bold text-ink leading-tight">National Patent Drafting Competition</p>
-                  </div>
-                </div>
-                <p className="text-[12px] leading-relaxed text-ink/60 italic mb-4">
-                  "Awarded for precision in technical writing and comprehensive understanding of IPR frameworks (IPR Week 2024)."
-                </p>
-                <div className="mt-auto flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-gold uppercase tracking-widest group-hover:gap-3 transition-all">
-                    <span>Verify Credential</span>
-                    <Eye size={14} />
-                  </div>
-                  <div className="flex items-center gap-1 text-[9px] font-bold text-green-600 uppercase tracking-tighter">
-                    <div className="w-1 h-1 rounded-full bg-green-500" />
-                    <span>Verified</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-            
-            <div className="flex items-center gap-6 justify-center md:justify-start">
-              <div className="h-[3px] w-20 bg-gradient-to-r from-gold via-gold-light to-transparent rounded-full"></div>
-            </div>
           </div>
         </div>
       </section>
@@ -806,42 +680,6 @@ export default function App() {
           </button>
         </div>
       </footer>
-
-      {/* Privacy Policy Modal */}
-      <AnimatePresence>
-        {activeCertificate && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[5000] flex items-center justify-center p-5 sm:p-10 bg-ink/95 backdrop-blur-md"
-            onClick={() => setActiveCertificate(null)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-[1000px] max-h-full bg-white rounded-xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setActiveCertificate(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
-              >
-                <X size={20} />
-              </button>
-              <img 
-                src={activeCertificate} 
-                alt="Certificate" 
-                className="w-full h-auto max-h-[85vh] object-contain"
-              />
-              <div className="p-4 bg-white border-t border-gray-100 flex justify-center items-center">
-                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium text-center">Verifiable Achievement</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <AnimatePresence>
         {showPrivacy && (
