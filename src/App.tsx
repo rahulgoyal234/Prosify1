@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring, useMotionValue, AnimatePresence, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useMotionValue, AnimatePresence, useTransform } from "framer-motion";
 import { 
   ArrowRight, 
   X,
@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy, useRef } from "react";
 import { Globe } from "./components/Globe";
-import { InsightsHub } from "./components/InsightsHub";
+const InsightsHub = lazy(() => import("./components/InsightsHub").then(m => ({ default: m.InsightsHub })));
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -439,7 +439,9 @@ export default function App() {
         </div>
       </section>
 
-      <InsightsHub />
+      <Suspense fallback={null}>
+        <InsightsHub />
+      </Suspense>
 
       {/* Global Presence Section */}
       <section id="global" className="bg-ink flex-col py-20">

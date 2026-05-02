@@ -2,9 +2,37 @@ import React, { useState } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { Search, Sparkles, MoveRight, ExternalLink, Loader2 } from "lucide-react";
 import Markdown from 'react-markdown';
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let aiClient: GoogleGenAI | null = null;
+
+const getAI = () => {
+  if (!aiClient) {
+    // Ultra-safe key retrieval for combined Vite/Node environments
+    let apiKey: string | undefined;
+    
+    try {
+      // Try process.env (Node/some builds)
+      if (typeof process !== 'undefined') {
+        apiKey = process.env.GEMINI_API_KEY;
+      }
+      
+      // Try import.meta.env (Vite)
+      if (!apiKey && typeof import.meta !== 'undefined' && (import.meta as any).env) {
+        apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY;
+      }
+    } catch (e) {
+      console.warn("Could not access environment variables:", e);
+    }
+    
+    if (!apiKey) {
+      console.warn("GEMINI_API_KEY is not defined. Insights Hub search will fail.");
+      return null;
+    }
+    aiClient = new GoogleGenAI({ apiKey });
+  }
+  return aiClient;
+};
 
 interface GroundingChunk {
   web?: {
@@ -29,6 +57,12 @@ export const InsightsHub: React.FC = () => {
     setSources([]);
 
     try {
+      const ai = getAI();
+      if (!ai) {
+        setResult("API Key not configured. Please check your environment variables.");
+        setIsLoading(false);
+        return;
+      }
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: activeQuery,
