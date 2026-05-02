@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, Suspense, lazy, useRef } from "react";
 import { Globe } from "./components/Globe";
+import { InsightsHub } from "./components/InsightsHub";
 const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 const logo = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTcwIDQxOHYtMjg4YzI0MCAwIDI0MCAxNzAgMCAxNzAiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTI1IiByPSI0MCIgZmlsbD0iI2M5YTg0YyIvPgo8L3N2Zz4=";
 // import logo from "./logo.svg";
@@ -37,7 +38,7 @@ const testimonials = [
   { initials: "PB", name: "Priya Bansal", role: "CA Finalist", text: "My new resume didn't just look better, it told a story. I landed three interviews within a week of updating my profile." },
 ];
 
-const sectionIds = ['hero', 'philosophy', 'global', 'services', 'process', 'testimonials', 'cta'];
+const sectionIds = ['hero', 'philosophy', 'insights', 'global', 'services', 'process', 'testimonials', 'cta'];
 
 export default function App() {
   const [isHovering, setIsHovering] = useState(false);
@@ -139,11 +140,11 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const fadeIn = {
+  const fadeIn: any = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-100px" },
-    transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }
+    transition: { duration: 0.8, ease: "easeOut" }
   };
 
   return (
@@ -218,7 +219,7 @@ export default function App() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-9 list-none">
-          {['About', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
+          {['About', 'Insights', 'Services', 'Process', 'Testimonials', 'Contact'].map((item) => (
             <li key={item}>
               <a 
                 href={`#${item === 'About' ? 'philosophy' : item === 'Contact' ? 'cta' : item.toLowerCase()}`} 
@@ -278,6 +279,7 @@ export default function App() {
               >
                 {[
                   { label: 'About', href: '#philosophy' },
+                  { label: 'Insights', href: '#insights' },
                   { label: 'Services', href: '#services' },
                   { label: 'Process', href: '#process' },
                   { label: 'Testimonials', href: '#testimonials' },
@@ -436,6 +438,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <InsightsHub />
 
       {/* Global Presence Section */}
       <section id="global" className="bg-ink flex-col py-20">
@@ -635,7 +639,7 @@ export default function App() {
         <div>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Menu</p>
           <ul className="list-none flex flex-col gap-2.5">
-            {['About', 'Services', 'Process', 'Testimonials'].map(item => (
+            {['About', 'Insights', 'Services', 'Process', 'Testimonials'].map(item => (
               <li key={item}>
                 <a href={`#${item === 'About' ? 'philosophy' : item.toLowerCase()}`} className="text-[13px] text-warm-grey hover:text-parchment transition-colors" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>{item}</a>
               </li>
